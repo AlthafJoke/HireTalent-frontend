@@ -3,17 +3,10 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="py-1">
+    <footer className="py-1 text-white">
       <p className="text-center mt-1">
-        HireTalen - 2022-2030, All Rights Reserved
-        <Link
-          className="ml-4"
-          rel="noreferrer"
-          target="_blank"
-          href="https://storyset.com/people"
-        >
-          People illustrations by Storyset
-        </Link>
+        HireTalent - 2022-2030, All Rights Reserved
+        
       </p>
     </footer>
   );

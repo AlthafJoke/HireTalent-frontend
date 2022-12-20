@@ -1,6 +1,7 @@
 
 import Layout from "../../components/layout/Layout";
 import axios from "axios";
+import JobDetails from "../../components/job/JobDetails";
 
 
 export default function JobDetailsPage( {job, candidates} ) {
@@ -11,7 +12,8 @@ export default function JobDetailsPage( {job, candidates} ) {
   return (
     <>
     <Layout>
-      <h1 className="text-xl">Job details</h1>
+      
+      <JobDetails job={job} candidates={candidates}/>
     </Layout>
       
     </>

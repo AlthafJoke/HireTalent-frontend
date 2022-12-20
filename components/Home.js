@@ -13,11 +13,11 @@ const Home = ({data}) => {
          
         </div>
 
-        <div className="col-xl-9 col-lg-8 content-left-offset">
+        <div className="col-xl-9 col-lg-8 content-left-offset text-white">
           <div className="my-5">
             <h4 className="page-title ">Latest Jobs</h4>
             <Link  href="/stats">
-              <button className="btn btn-secondary float-right stats_btn">
+              <button className="bg-transparent py-2 px-4 border   rounded float-right stats_btn">
                 Get Topic stats
               </button>
             </Link>
