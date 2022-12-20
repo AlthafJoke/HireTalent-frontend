@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Parisienne&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html,
 body {
@@ -7,6 +10,9 @@ body {
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
+}
+h4{
+  text-decoration: none;
 }
 
 /* Scroll Bar */
@@ -30,14 +36,15 @@ body {
 /* Header */
 
 .navWrapper {
+  
   min-width: 100%;
-  background: #fff;
+  background: rgb(255, 255, 255);
   padding: 10px 0;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 .navContainer {
-  width: 85%;
+  max-width: 85%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -45,7 +52,7 @@ body {
 }
 
 .logoWrapper {
-  font-family: "Parisienne", cursive;
+  font-family: "Roboto", cursive;
   font-size: 24px;
   font-weight: bold;
   display: flex;
@@ -76,7 +83,7 @@ body {
   cursor: pointer;
   border-radius: 2px;
   height: 35px;
-  width: 120px;
+  max-width: 120px;
   transition: all 0.5s;
 }
 .postAJobButton span {
@@ -85,8 +92,9 @@ body {
   position: relative;
   color: rgb(255, 255, 255);
   font-weight: bold;
-  font-size: 12px;
+  font-size: 0.8em; 
   transition: 0.5s;
+  width: 100%;
 }
 
 .postAJobButton span:after {
@@ -256,9 +264,12 @@ body {
 }
 
 .job-listing:hover {
-  text-decoration: none;
+  text-decoration: none ;
   top: -1px;
   box-shadow: 0 2px 12px rgb(0 0 0 / 25%);
+}
+.job-listing a:hover {
+  text-decoration: none;
 }
 
 .job-listing-details {
@@ -272,6 +283,13 @@ body {
 .job-listing .job-listing-description {
   flex: 1;
   padding-top: 3px;
+}
+
+.job-listing-company {
+  text-decoration: none;
+}
+.job-listing-company:hover {
+  text-decoration: none;
 }
 
 .job-listing h4.job-listing-company {
@@ -290,6 +308,7 @@ body {
   padding: 0;
   color: #666;
 }
+
 
 .job-listing .job-listing-footer {
   background-color: #f2f2f2;
@@ -564,6 +583,14 @@ footer {
   color: var(--primary);
   margin-left: 10px;
 }
+@media only screen and (max-width: 600px) {
+  /* styles for small screens go here */
+  .navContainer{
+    width: 100%;
+  }
+}
+
+
 
 @media only screen and (max-width: 920px) {
   .modalWrapper {

@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const Header = () => {
   return (
-    <div className="navWrapper">
+    <div className="navWrapper ">
       <div className="navContainer">
         <Link href="/">
           <div className="logoWrapper">
@@ -12,7 +12,7 @@ const Header = () => {
               <Image width="30" height="30" src="/images/logo.png" alt="" />
             </div>
             <span className="logo1">Hire</span>
-            <span className="logo2">Talen</span>
+            <span className="logo2">Talent</span>
           </div>
         </Link>
         <div className="btnsWrapper">

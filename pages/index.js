@@ -4,12 +4,12 @@ import axios from "axios";
 
 
 export default function Index({data}) {
-  console.log(data)
+  
 
   return (
     <>
     <Layout>
-      <Home/>
+      <Home data={data}/>
     </Layout>
       
     </>
