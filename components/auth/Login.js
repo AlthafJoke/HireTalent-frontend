@@ -11,7 +11,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const {loading, error, isAuthenticated} = useContext(AuthContext)
+  const {loading, error, isAuthenticated, login } = useContext(AuthContext)
 
   const Router = useRouter()
 
@@ -27,6 +27,7 @@ const Login = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(email, password)
+    login({username: email, password});
   }
 
 
@@ -74,7 +75,7 @@ const Login = () => {
                 </button>
               </div>
               <p style={{ textDecoration: "none" }} className="signup">
-                New to Jobbee? <a href="/register">Create an account</a>
+                Not having account? <a href="/register">Create an account</a>
               </p>
             </form>
           </div>
