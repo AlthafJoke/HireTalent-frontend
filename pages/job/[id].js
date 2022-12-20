@@ -2,11 +2,17 @@
 import Layout from "../../components/layout/Layout";
 import axios from "axios";
 import JobDetails from "../../components/job/JobDetails";
+// import NotFound from "../../components/layout/NotFound";
 
 
 export default function JobDetailsPage( {job, candidates} ) {
-    console.log("job is: ",job )
-    console.log("candidates are:" , candidates)
+  
+
+ 
+ 
+
+  console.log("job is: ",job )
+  console.log("candidates are:" , candidates)
   
 
   return (
@@ -21,15 +27,22 @@ export default function JobDetailsPage( {job, candidates} ) {
 }
  
 export async function getServerSideProps({params}) {
-    const response = await axios.get(`${process.env.API_URL}api/job/${params.id}/`)
-    
-    const job = response.data.job
-    const candidates = response.data.candidates
+  try {
+    const response = await axios.get(`${process.env.API_URL}api/job/${params.id}/`);
+  
+  const job = response.data.job;
+  const candidates = response.data.candidates;
 
-    return {
-        props: {
-            job,
-            candidates
-        }
-    }
+  return {
+      props: {
+          job,
+          candidates
+      },
+  };
+
+  }
+  catch (error) {
+    console.log(error)
+  }
+  
 }
