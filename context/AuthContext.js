@@ -67,6 +67,62 @@ export const AuthProvider = ({children}) => {
         }
     }
 
+    //Logout user
+    const logout = async () => {
+        try{
+
+
+            const res = await axios.post('/api/auth/logout')
+
+            if (res.data.success){
+                setIsAuthenticated(false)
+               
+                setUser(null)
+                
+            }
+
+
+        }catch (error){
+            setLoading(false)
+            setIsAuthenticated(false)
+            setUser(null)
+            setError(error.response && (error.response.data.detail || error.response.data.error))
+            
+        }
+    }
+
+    //Register User
+    const register = async ({ firstName, lastName, email, password}) => {
+        try{
+            setLoading(true)
+
+            const res = await axios.post(`${process.env.API_URL}api/auth/register/`, {
+                first_name: firstName,
+                last_name: lastName,
+                email,
+                password,
+            })
+            if (res.data.username){
+              
+                setLoading(false)
+                router.push('/login')
+                
+            }
+
+
+        }catch (error){
+            setLoading(false)
+            setError(error.response && (error.response.data.detail || error.response.data.error))
+            
+        }
+    }
+
+    // clear errors
+    const clearErrors = () => {
+        setError(null);
+    }
+
+
 
     return (
         <AuthContext.Provider value={{
@@ -75,6 +131,10 @@ export const AuthProvider = ({children}) => {
             isAuthenticated,
             error,
             login,
+            logout,
+            register,
+            clearErrors,
+            
         }}>
             {children}
         </AuthContext.Provider>

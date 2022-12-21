@@ -4,7 +4,11 @@ import Image from "next/image";
 import AuthContext from "../../context/AuthContext";
 
 const Header = () => {
-  const { loading, user } = useContext(AuthContext);
+  const { loading, user, logout } = useContext(AuthContext);
+
+  const logoutHandler = () => {
+    logout()
+  }
 
   return (
     <div className="navWrapper items-center justify-center ">
@@ -15,7 +19,7 @@ const Header = () => {
               <Image width="30" height="30" src="/images/logo.png" alt="" />
             </div>
             <span className="logo1">Hire</span>
-            <span className="logo2">Talent</span>
+            <span className="logo2">Talent.com</span>
           </div>
         </Link>
         <div className="btnsWrapper items-center justify-center">
@@ -26,7 +30,7 @@ const Header = () => {
           </Link>
 
           {user ? (
-            <div className="btn dropdown ml-3">
+            <div className="dropdown ml-3">
               <a
                 className="btn dropdown-toggle mr-4 text-black"
                 id="dropDownMenuButton"
@@ -61,7 +65,7 @@ const Header = () => {
                   </a>
                 </Link>
                 <Link legacyBehavior href="/">
-                  <a className="dropdown-item text-red-500 hover:bg-red-100">
+                  <a className="dropdown-item text-red-500 hover:bg-red-100" onClick={() => logout()}>
                     <span>Logout</span>
                   </a>
                 </Link>
@@ -70,7 +74,7 @@ const Header = () => {
           ) : (
             !loading && (
               <Link href="/login">
-                <button className="loginButtonHeader  ">
+                <button className="loginButtonHeader">
                   <span>Login</span>
                 </button>
               </Link>
