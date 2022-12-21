@@ -103,8 +103,8 @@ const JobDetails = ({job, candidates}) => {
               <div className="alert alert-danger">
                 <h5>Note:</h5>
                 You can no longer apply to this job. This job is expired. Last
-                date to apply for this job was: <b>15-2-2022</b>
-                <br /> Checkout others job on Jobbee.
+                date to apply for this job was: <b>{moment.utc(job.lastDate).format("dddd, MMMM  YYYY")}</b>
+                <br /> Checkout others job on HireTalent.
               </div>
             </div>
           </div>

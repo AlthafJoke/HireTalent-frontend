@@ -97,7 +97,7 @@ h4{
   display: flex;
 }
 .postAJobButton {
-  background: green;
+  background: #23508a;
   padding: 5px 15px;
   border: none;
   outline: none;
@@ -137,7 +137,7 @@ h4{
   right: 0;
 }
 .loginButtonHeader {
-  background: var(--primary);
+  background: #23508a;
   padding: 5px 20px;
   border: none;
   outline: none;

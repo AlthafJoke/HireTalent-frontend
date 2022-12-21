@@ -3,6 +3,7 @@ import Image from "next/image";
 import AuthContext from '../../context/AuthContext' 
 
 import { useRouter } from "next/router";
+import {toast} from 'react-toastify'
 
 
 
@@ -18,6 +19,7 @@ const Login = () => {
   useEffect(() => {
     if(error) {
       console.log(error);
+      toast.error(error)
     }
     if(isAuthenticated && !loading) {
       Router.push('/')
