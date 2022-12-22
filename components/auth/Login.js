@@ -4,6 +4,7 @@ import AuthContext from '../../context/AuthContext'
 
 import { useRouter } from "next/router";
 import {toast} from 'react-toastify'
+import Link from "next/link";
 
 
 
@@ -18,7 +19,7 @@ const Login = () => {
 
   useEffect(() => {
     if(error) {
-      console.log(error);
+      
       toast.error(error)
       clearErrors(); 
     }
@@ -29,21 +30,17 @@ const Login = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(email, password)
+    
     login({username: email, password});
   }
 
 
   return (
     <div className="modalMask">
-      <div className="modalWrapper">
-        <div className="left">
-          <div style={{ width: "100%", height: "100%", position: "relative" }}>
-            <Image src="/images/login.svg" alt="login" layout="fill" />
-          </div>
-        </div>
+      <div className="modalWrapper ">
+        
         <div className="right">
-          <div className="rightContentWrapper">
+          <div className="rightContentWrapper ">
             <div className="headerWrapper">
               <h2> LOGIN</h2>
             </div>
@@ -78,7 +75,7 @@ const Login = () => {
                 </button>
               </div>
               <p style={{ textDecoration: "none" }} className="signup">
-                Not having account? <a href="/register">Create an account</a>
+                Not having account? <Link href="/register">Create an account</Link>
               </p>
             </form>
           </div>

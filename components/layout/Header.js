@@ -24,7 +24,7 @@ const Header = () => {
         </Link>
         <div className="btnsWrapper items-center justify-center">
           <Link href="/employeer/jobs/new">
-            <button className="postAJobButton items-center justify-center">
+            <button className="postAJobButton flex items-center justify-center">
               <span>Post A Job</span>
             </button>
           </Link>
@@ -73,9 +73,9 @@ const Header = () => {
             </div>
           ) : (
             !loading && (
-              <Link href="/login">
-                <button className="loginButtonHeader">
-                  <span>Login</span>
+              <Link href="/login" className="items-center justify-center">
+                <button className="loginButtonHeader items-center justify-center">
+                  <span className="items-center justify-center">Login</span>
                 </button>
               </Link>
             )

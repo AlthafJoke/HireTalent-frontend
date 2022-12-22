@@ -102,7 +102,7 @@ export const AuthProvider = ({children}) => {
                 email,
                 password,
             })
-            if (res.data.username){
+            if (res.data.success){
               
                 setLoading(false)
                 router.push('/login')

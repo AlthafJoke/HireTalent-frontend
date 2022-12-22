@@ -66,7 +66,7 @@ h4{
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 .navContainer {
-  max-width: 85%;
+  max-width: 80%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -75,14 +75,14 @@ h4{
 
 .logoWrapper {
   font-family: "Roboto", cursive;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: bold;
   display: flex;
   align-items: center;
   cursor: pointer;
 }
 .logoImgWrapper {
-  width: 27px;
+  width: 2rem;
   display: flex;
   margin-right: 10px;
 }
@@ -98,7 +98,7 @@ h4{
 }
 .postAJobButton {
   background: #23508a;
-  padding: 5px 15px;
+  padding: 1rem 1rem;
   border: none;
   outline: none;
   margin-left: 1rem;
@@ -119,23 +119,6 @@ h4{
   width: 100%;
 }
 
-.postAJobButton span:after {
-  content: "\00bb";
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.postAJobButton:hover span {
-  padding-right: 25px;
-}
-
-.postAJobButton:hover span:after {
-  opacity: 1;
-  right: 0;
-}
 .loginButtonHeader {
   background: #23508a;
   padding: 5px 20px;
@@ -167,14 +150,7 @@ h4{
   transition: 0.5s;
 }
 
-.loginButtonHeader:hover span {
-  padding-right: 25px;
-}
 
-.loginButtonHeader:hover span:after {
-  opacity: 1;
-  right: 0;
-}
 
 /* Loader */
 
@@ -459,14 +435,15 @@ footer {
   align-items: center;
 }
 .modalWrapper {
-  width: 75%;
+  
+  width: 25rem;
   height: 70vh;
   background: rgb(255, 255, 255);
   border-radius: 10px;
   position: relative;
   display: flex;
   z-index: 20;
-  border: 1px solid rgb(233, 233, 233);
+  /* border: 1px solid rgb(255, 255, 255); */
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
     rgba(17, 17, 26, 0.05) 0px 8px 32px;
 }
@@ -474,7 +451,7 @@ footer {
   height: 60%;
 }
 .right {
-  border-left: 1px solid rgb(196, 196, 196);
+  /* border-left: 1px solid rgb(196, 196, 196); */
   display: flex;
   align-items: center;
   padding: 0 20px;
@@ -627,6 +604,8 @@ footer {
   .modalWrapper {
     width: 70%;
   }
+  
+  
 }
 @media only screen and (max-width: 720px) {
   .left {
