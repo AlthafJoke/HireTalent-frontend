@@ -3,6 +3,7 @@ import Link from "next/link";
 import JobItem from "./job/JobItem";
 import { useRouter } from "next/router";
 import Pagination from 'react-js-pagination'
+import Filters from "./layout/Filters";
 
 const Home = ({data}) => {
   const {jobs, count, resPerPage} = data
@@ -40,21 +41,21 @@ const Home = ({data}) => {
     <div className="container-sm">
       <div className="row ">
         <div className="col-xl-3 col-lg-4 ">
-          {/* <Filters />{" "} */}
+          <Filters />
 
          
         </div>
 
         <div className="col-xl-9 col-lg-8 content-left-offset text-white">
           <div className="my-5">
-            <h4 className="page-title "> {keyword? `${jobs.length} Results for ${keyword}`: "Latest Jobs" } </h4>
+            <h4 className="page-title text-xl"> {keyword? `${jobs.length} Results for ${keyword}`: "Latest Jobs" } </h4>
             <Link  href="/stats">
-              <button className="bg-transparent py-2 px-4 border   rounded float-right stats_btn">
+              <button className="bg-transparent py-2 px-4 border   rounded float-right stats_btn ">
                 Get Topic stats
               </button>
             </Link>
             <div className="d-block ">
-              <Link  href="/search" className="hover:no-underline">Go to Search</Link>
+              <Link  href="/search" className="hover:no-underline font-bold text-xl">Go to Search</Link>
             </div>
           </div>
           {/* if jobs exist start mapping job*/}
