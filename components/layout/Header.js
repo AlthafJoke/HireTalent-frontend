@@ -46,7 +46,7 @@ const Header = () => {
               >
                 <Link legacyBehavior href="/employor/jobs/">
                   <a className="dropdown-item hover:bg-blue-100">
-                    <span className="">My jobbs</span>
+                    <span className="">My jobs</span>
                   </a>
                 </Link>
                 <Link legacyBehavior href="me/applied">
