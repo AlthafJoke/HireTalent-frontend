@@ -2,7 +2,7 @@
 import Layout from "../../components/layout/Layout";
 import axios from "axios";
 import JobDetails from "../../components/job/JobDetails";
-// import NotFound from "../../components/layout/NotFound";
+
 
 
 export default function JobDetailsPage( {job, candidates} ) {
@@ -17,7 +17,7 @@ export default function JobDetailsPage( {job, candidates} ) {
 
   return (
     <>
-    <Layout>
+    <Layout title={job.title}>
       
       <JobDetails job={job} candidates={candidates}/>
     </Layout>

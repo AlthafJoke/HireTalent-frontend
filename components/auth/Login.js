@@ -13,9 +13,9 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const {loading, error, isAuthenticated, login, clearErrors } = useContext(AuthContext)
+  const {loading, error, isAuthenticated, login, clearErrors } = useContext(AuthContext);
 
-  const Router = useRouter()
+  const Router = useRouter();
 
   useEffect(() => {
     if(error) {

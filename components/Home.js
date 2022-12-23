@@ -42,10 +42,7 @@ const Home = ({data}) => {
       <div className="row ">
         <div className="col-xl-3 col-lg-4 ">
           <Filters />
-
-         
         </div>
-
         <div className="col-xl-9 col-lg-8 content-left-offset text-white">
           <div className="my-5">
             <h4 className="page-title text-xl"> {keyword? `${jobs.length} Results for ${keyword}`: "Latest Jobs" } </h4>

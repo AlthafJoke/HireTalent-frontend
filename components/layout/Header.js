@@ -15,9 +15,7 @@ const Header = () => {
       <div className="navContainer items-center justify-center">
         <Link href="/">
           <div className="logoWrapper">
-            <div className="logoImgWrapper">
-              <Image width="30" height="30" src="/images/logo.png" alt="" />
-            </div>
+            
             <span className="logo1">Hire</span>
             <span className="logo2">Talent.com</span>
           </div>
