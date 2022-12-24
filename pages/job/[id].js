@@ -5,7 +5,7 @@ import JobDetails from "../../components/job/JobDetails";
 
 
 
-export default function JobDetailsPage( {job, candidates} ) {
+export default function JobDetailsPage( {job, candidates, access_token } ) {
   
 
  
@@ -17,26 +17,28 @@ export default function JobDetailsPage( {job, candidates} ) {
 
   return (
     <>
-    <Layout title={job.title}>
+    <Layout>
       
-      <JobDetails job={job} candidates={candidates}/>
+      <JobDetails job={job} candidates={candidates} access_token={access_token}/>
     </Layout>
       
     </>
   )
 }
  
-export async function getServerSideProps({params}) {
+export async function getServerSideProps({ req, params}) {
   try {
     const response = await axios.get(`${process.env.API_URL}api/job/${params.id}/`);
   
   const job = response.data.job;
   const candidates = response.data.candidates;
+  const access_token = req.cookies.access
 
   return {
       props: {
           job,
-          candidates
+          candidates,
+          access_token,
       },
   };
 

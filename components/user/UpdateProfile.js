@@ -11,7 +11,7 @@ const UpdateProfile = ({access_token}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { updated, loading, error, user, clearErrors, updateProfile, setUpdated } = useContext(AuthContext);
+  const { updated, loading, error, user, clearErrors, updateProfile, setUpdated} = useContext(AuthContext);
 
   const router = useRouter();
 
@@ -22,6 +22,7 @@ const UpdateProfile = ({access_token}) => {
         setLastName(user.last_name)
         setEmail(user.email)
     }
+
 
     if (error) {
       

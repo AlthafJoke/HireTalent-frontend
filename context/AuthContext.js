@@ -10,6 +10,8 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState(null);
   const [updated, setUpdated] = useState(null);
+  const [uploaded, setUploaded] = useState(null)
+  const [success, setSuccess] = useState(false)
 
   const router = useRouter();
 
@@ -99,6 +101,8 @@ export const AuthProvider = ({ children }) => {
         password,
       });
       if (res.data.success) {
+        setSuccess(true)
+        setUploaded(true)
         setLoading(false);
         router.push("/login");
       }
@@ -149,9 +153,39 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+    //upload Resume
+    const uploadResume = async (
+      formData ,access_token ) => {
+      try {
+        setLoading(true);
+  
+        const res = await axios.put(`${process.env.API_URL}api/upload/resume/`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${access_token}`,
+            },
+          }
+        );
+        if (res.data) {
+          
+          setLoading(false);
+          setUploaded(true)
+          
+        }
+      } catch (error) {
+        setLoading(false);
+        setError(
+          error.response &&
+            (error.response.data.detail || error.response.data.error)
+        );
+      }
+    };
+
   return (
     <AuthContext.Provider
       value={{
+
         loading,
         user,
         isAuthenticated,
@@ -163,6 +197,12 @@ export const AuthProvider = ({ children }) => {
         updated,
         updateProfile,
         setUpdated,
+        uploadResume,
+        uploaded,
+        setUploaded,
+        success,
+        setSuccess,
+
       }}
     >
       {children}

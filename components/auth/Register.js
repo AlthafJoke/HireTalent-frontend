@@ -20,9 +20,16 @@ const Register = () => {
   useEffect(() => {
     if (error) {
       
+      
       toast.error(error);
       clearErrors();
     }
+
+    
+
+
+
+
     if (isAuthenticated && !loading) {
       Router.push("/");
     }
@@ -32,6 +39,8 @@ const Register = () => {
     e.preventDefault();
     
     register({ firstName , lastName, email, password });
+    
+   
   };
 
   return (

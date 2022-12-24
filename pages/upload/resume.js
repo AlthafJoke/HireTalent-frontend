@@ -1,14 +1,13 @@
 import Layout from "../../components/layout/Layout";
-import UpdateProfile from "../../components/user/UpdateProfile";
-
+import UploadResume from "../../components/user/UploadResume";
 import { isAuthenticatedUser } from "../../utils/isAuthenticated";
 
-import axios from "axios";
 
-export default function UpdateProfilePage({ access_token }) {
+
+export default function UploadResumePage({ access_token }) {
   return (
-    <Layout title="Update User Profile ">
-      <UpdateProfile access_token={access_token} />
+    <Layout title="Upload your resume ">
+      <UploadResume access_token={access_token} />
     </Layout>
   );
 }
