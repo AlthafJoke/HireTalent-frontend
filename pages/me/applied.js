@@ -7,9 +7,11 @@ import axios from "axios";
 export default function JobsAppliedPage({ jobs }) {
   console.log(jobs)
   return (
+    <>
     <Layout title="Update User Profile ">
       <JobsApplied jobs={jobs}/>
     </Layout>
+    </>
   );
 }
 

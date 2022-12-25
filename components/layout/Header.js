@@ -39,33 +39,33 @@ const Header = () => {
                 <span>Hi, {user.first_name}</span>
               </a>
               <div
-                className="dropdown-menu  "
+                className="dropdown-menu "
                 aria-labelledby="dropDownMenuButton"
               >
-                <Link legacyBehavior href="/employor/jobs/">
-                  <a className="dropdown-item hover:bg-blue-100">
-                    <span className="">My jobs</span>
-                  </a>
+                <Link  href="/employor/jobs/" className="hover:no-underline">
+                  <button className="dropdown-item hover:bg-blue-100 ">
+                    <span >My jobs</span>
+                  </button>
                 </Link>
-                <Link legacyBehavior href="me/applied">
-                  <a className="dropdown-item hover:bg-blue-100">
+                <Link  href="me/applied" className="hover:no-underline">
+                  <button className="dropdown-item hover:bg-blue-100">
                     <span>Jobs Applied</span>
-                  </a>
+                  </button>
                 </Link>
-                <Link legacyBehavior href="/me">
-                  <a className="dropdown-item hover:bg-blue-100">
+                <Link  href="/me" className="hover:no-underline">
+                  <button className="dropdown-item hover:bg-blue-100">
                     <span>Profile</span>
-                  </a>
+                  </button>
                 </Link>
-                <Link legacyBehavior href="/upload/resume">
-                  <a className="dropdown-item hover:bg-blue-100">
+                <Link  href="/upload/resume" className="hover:no-underline">
+                  <button className="dropdown-item hover:bg-blue-100">
                     <span>Upload Resume</span>
-                  </a>
+                  </button>
                 </Link>
-                <Link legacyBehavior href="/">
-                  <a className="dropdown-item text-red-500 hover:bg-red-100" onClick={() => logout()}>
+                <Link  href="/" className="hover:no-underline">
+                  <button className="dropdown-item text-red-500 hover:bg-red-100" onClick={() => logout()}>
                     <span>Logout</span>
-                  </a>
+                  </button>
                 </Link>
               </div>
             </div>

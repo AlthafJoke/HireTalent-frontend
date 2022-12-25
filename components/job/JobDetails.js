@@ -147,7 +147,7 @@ const JobDetails = ({ job, candidates, access_token }) => {
                 <div className="alert alert-danger">
                   <h5>Note:</h5>
                   You can no longer apply to this job. This job is expired. Last
-                  date to apply for this job was:{" "}
+                  date to apply for this job was:
                   <b>{job.lastDate.substring(0, 10)}</b>
                   <br /> Checkout others job on HireTalent.
                 </div>
