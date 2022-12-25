@@ -10,6 +10,7 @@ export const JobProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [updated, setUpdated] = useState(null);
   const [applied, setApplied] = useState(false);
+  const [stats, setStats] = useState(false)
 
   const [success, setSuccess] = useState(false);
 
@@ -71,6 +72,29 @@ export const JobProvider = ({ children }) => {
     }
   };
 
+  // get topic stats
+  const getTopicStats = async (topic) => {
+    try {
+      setLoading(true);
+
+      const res = await axios.get(
+        `${process.env.API_URL}api/stats/${topic}/`,
+
+      );
+
+      setLoading(false);
+      setStats(res.data);
+
+
+    } catch (error) {
+      setLoading(false);
+      setError(
+        error.response &&
+          (error.response.data.detail || error.response.data.error)
+      );
+    }
+  };
+
   // clear errors
   const clearErrors = () => {
     setError(null);
@@ -87,6 +111,8 @@ export const JobProvider = ({ children }) => {
         applied,
         applyToJob,
         checkJobApplied,
+        stats,
+        getTopicStats,
       }}
     >
       {children}
