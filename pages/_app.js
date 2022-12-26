@@ -1,18 +1,20 @@
-import * as React from 'react';
+import * as React from "react";
 import "../styles/globals.css";
 import { AuthProvider } from "../context/AuthContext";
 import { JobProvider } from "../context/JobContext";
-import { NextUIProvider } from '@nextui-org/react';
+import { NextUIProvider } from "@nextui-org/react";
 
-export default function App({ Component, pageProps }) {
+
+export default function App({ Component, pageProps, session }) {
   return (
-    <NextUIProvider>
-
-    <AuthProvider>
-      <JobProvider>
-        <Component {...pageProps} />
-      </JobProvider>
-    </AuthProvider>
-    </NextUIProvider>
+    
+      <NextUIProvider>
+        <AuthProvider>
+          <JobProvider>
+            <Component {...pageProps} />
+          </JobProvider>
+        </AuthProvider>
+      </NextUIProvider>
+   
   );
 }

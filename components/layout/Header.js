@@ -21,7 +21,7 @@ const Header = () => {
           </div>
         </Link>
         <div className="btnsWrapper items-center justify-center">
-          <Link href="/employeer/jobs/new">
+          <Link href="/employer/jobs/new">
             <button className="postAJobButton flex items-center justify-center">
               <span>Post A Job</span>
             </button>
