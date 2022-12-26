@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useState, useEffect, createContext } from "react";
+import { toast } from "react-toastify";
 
 const JobContext = createContext();
 
@@ -11,8 +12,8 @@ export const JobProvider = ({ children }) => {
   const [updated, setUpdated] = useState(null);
   const [applied, setApplied] = useState(false);
   const [stats, setStats] = useState(false)
-
-  const [success, setSuccess] = useState(false);
+  const [created, setCreated] = useState(false)
+  
 
   //Apply to job
   const applyToJob = async (id, access_token) => {
@@ -95,6 +96,36 @@ export const JobProvider = ({ children }) => {
     }
   };
 
+  //Create a new Job
+  const newJob = async (data, access_token) => {
+    console.log(access_token, "hdfjdsfdffd");
+
+    try {
+      setLoading(true);
+
+      const res = await axios.post(
+        `${process.env.API_URL}api/job/new-job/`,
+        data,
+
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      if (res.data) {
+        setLoading(false);
+        setCreated(true);
+      }
+    } catch (error) {
+      setLoading(false);
+      setError(
+        error.response &&
+          (error.response.data.detail || error.response.data.error)
+      );
+    }
+  };
+
   // clear errors
   const clearErrors = () => {
     setError(null);
@@ -113,6 +144,9 @@ export const JobProvider = ({ children }) => {
         checkJobApplied,
         stats,
         getTopicStats,
+        newJob,
+        created,
+        setCreated,
       }}
     >
       {children}
