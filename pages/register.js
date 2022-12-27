@@ -4,7 +4,7 @@ import Layout from "../components/layout/Layout";
 
 export default function LoginPage () {
   return (
-    <Layout title="Login ">
+    <Layout title="Register as Job seeker ">
       <Register />
     </Layout>
   );

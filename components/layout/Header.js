@@ -3,8 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 import AuthContext from "../../context/AuthContext";
 
+
 const Header = () => {
   const { loading, user, logout } = useContext(AuthContext);
+  
+
 
   const logoutHandler = () => {
     logout()
