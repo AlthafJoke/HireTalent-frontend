@@ -7,8 +7,9 @@ import {
   IndustryOptions,
   ExperienceOptions,
 } from "./data";
+import { useRouter } from "next/router";
 
-const NewJob = ({ access_token }) => {
+const UpdateJob = ({ job, access_token }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [email, setEmail] = useState("");
@@ -21,29 +22,46 @@ const NewJob = ({ access_token }) => {
   const [positions, setPositions] = useState("");
   const [company, setCompany] = useState("");
 
-  const { clearErrors, error, loading, newJob, created, setCreated } = useContext(JobContext);
+  const router = useRouter();
 
+  const { clearErrors, error, loading, updateJob, updated, setUpdated } =
+    useContext(JobContext);
+  console.log(updated);
 
   useEffect(() => {
+    if (job) {
+      setTitle(job.title);
+      setDescription(job.description);
+      setEmail(job.email);
+      setAddress(job.address);
+      setJobType(job.jobType);
+      setEducation(job.education);
+      setIndustry(job.industry);
+      setExperience(job.experience);
+      setSalary(job.salary);
+      setPositions(job.positions);
+      setCompany(job.company);
+    }
+
     if (error) {
       toast.error(error);
       clearErrors();
     }
 
-    if (created){
+    if (updated) {
+      console.log("ejfjsdsdjfkdjf");
+      setUpdated(false);
+      router.push("/employer/jobs");
 
-      setCreated(false)
-      toast.success('Job posted successfully')
-
-      setTitle("")
-      setDescription("")
-      setEmail("")
-      setAddress("")
-      setSalary("")
-      setPositions("")
-      setCompany("")
+      setTitle("");
+      setDescription("");
+      setEmail("");
+      setAddress("");
+      setSalary("");
+      setPositions("");
+      setCompany("");
     }
-  }, [error, created]);
+  }, [error, updated]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -62,9 +80,7 @@ const NewJob = ({ access_token }) => {
       company,
     };
 
-    console.log(data,);
-
-    newJob(data, access_token) 
+    updateJob(job.id, data, access_token);
   };
 
   return (
@@ -73,7 +89,7 @@ const NewJob = ({ access_token }) => {
         <div className="headerWrapper">
           <div className="headerLogoWrapper"></div>
           <h1>
-            <i aria-hidden className="fas fa-copy mr-2"></i> POST A JOB
+            <i aria-hidden className="fas fa-copy mr-2"></i> Update JOB
           </h1>
         </div>
         <form className="form" onSubmit={submitHandler}>
@@ -165,9 +181,10 @@ const NewJob = ({ access_token }) => {
                     onChange={(e) => setJobType(e.target.value)}
                   >
                     {JobTypeOptions.map((item) => (
-                      <option key={item} value={item}>{item}</option>
+                      <option key={item} value={item}>
+                        {item}
+                      </option>
                     ))}
-                    
                   </select>
                 </div>
               </div>
@@ -181,7 +198,9 @@ const NewJob = ({ access_token }) => {
                     onChange={(e) => setEducation(e.target.value)}
                   >
                     {EducationOptions.map((item) => (
-                      <option key={item} value={item}>{item}</option>
+                      <option key={item} value={item}>
+                        {item}
+                      </option>
                     ))}
                     <option>Masters</option>
                   </select>
@@ -197,7 +216,9 @@ const NewJob = ({ access_token }) => {
                     onChange={(e) => setIndustry(e.target.value)}
                   >
                     {IndustryOptions.map((item) => (
-                      <option key={item} value={item}>{item}</option>
+                      <option key={item} value={item}>
+                        {item}
+                      </option>
                     ))}
                     <option>Business</option>
                   </select>
@@ -213,7 +234,9 @@ const NewJob = ({ access_token }) => {
                     onChange={(e) => setExperience(e.target.value)}
                   >
                     {ExperienceOptions.map((item) => (
-                      <option key={item} value={item}>{item}</option>
+                      <option key={item} value={item}>
+                        {item}
+                      </option>
                     ))}
                     <option>No Experience</option>
                   </select>
@@ -223,7 +246,7 @@ const NewJob = ({ access_token }) => {
 
             <div className="col text-center mt-3">
               <button className="createButton">
-                {loading ? "Posting..." : "Post Job"}
+                {loading ? "Updating..." : "Update Job"}
               </button>
             </div>
           </div>
@@ -233,4 +256,4 @@ const NewJob = ({ access_token }) => {
   );
 };
 
-export default NewJob;
+export default UpdateJob;

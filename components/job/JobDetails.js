@@ -2,7 +2,7 @@ import moment from "moment";
 import React, { useEffect, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import JobContext from "../../context/JobContext";
-import AuthContext from "../../context/AuthContext";
+
 
 const JobDetails = ({ job, candidates, access_token }) => {
   const { applyToJob, applied, clearErrors, error, loading, checkJobApplied } =

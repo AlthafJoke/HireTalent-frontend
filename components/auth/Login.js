@@ -86,6 +86,10 @@ const Login = () => {
               <p style={{ textDecoration: "none" }} className="signup">
                 Not having account? <Link href="/register">Create an account</Link>
               </p>
+              
+              
+
+              
             </form>
           </div>
         </div>
