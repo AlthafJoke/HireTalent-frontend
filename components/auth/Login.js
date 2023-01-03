@@ -1,15 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
 import Image from "next/image";
 import AuthContext from "../../context/AuthContext";
-
+import jwt_decode from "jwt-decode"
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Link from "next/link";
 // reactstrap components
 import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
 
+
 const Login = () => {
-  
   const [modalOpen, setModalOpen] = React.useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,9 +22,34 @@ const Login = () => {
     clearErrors,
     success,
     setSuccess,
+    googleAuth,
   } = useContext(AuthContext);
 
   const Router = useRouter();
+  const [user, setUser] = useState()
+
+  function handleCallbackResponse(response) {
+    console.log("Encoded jwt id token :", response.credential);
+    var userObject = jwt_decode(response.credential);
+    console.log(userObject);
+    setUser(userObject);
+    
+    
+  }
+
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id:
+        "692999485509-co0lqlgdf2vhpvd4jnc06vq6ji263tas.apps.googleusercontent.com",
+      callback: handleCallbackResponse,
+    });
+
+    google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+      theme: "outline",
+      size: "large",
+    });
+  }, []);
 
   useEffect(() => {
     if (error) {
@@ -45,7 +70,7 @@ const Login = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    login({ username: email, password });
+    login({ email, password });
   };
 
   return (
@@ -55,7 +80,7 @@ const Login = () => {
           <div className="right">
             <div className="rightContentWrapper ">
               <div className="headerWrapper">
-                <h2> LOGIN</h2>
+                <h3 className="font-bold"> LOGIN</h3>
               </div>
               <form className="form" onSubmit={submitHandler}>
                 <div className="inputWrapper">
@@ -87,22 +112,23 @@ const Login = () => {
                     {loading ? "Authenticating.." : "Login"}
                   </button>
                 </div>
-                <p style={{ textDecoration: "none" }} className="signup">
+                <div style={{ textDecoration: "none" }} className="signup">
                   Not having account?{" "}
                   <button
-                    className="btn btn-primary mx-3 shadow"
+                    className="btn btn-primary btn-sm mx-3 shadow"
                     onClick={() => setModalOpen(!modalOpen)}
                   >
                     Register
                   </button>
-                </p>
+                </div>
+                <div id="signInDiv" className="d-flex mt-5 items-center justify-center"></div>
               </form>
             </div>
           </div>
         </div>
       </div>
       {modalOpen && (
-        <Modal   toggle={() => setModalOpen(!modalOpen)} isOpen={modalOpen}>
+        <Modal toggle={() => setModalOpen(!modalOpen)} isOpen={modalOpen}>
           <div className=" modal-header">
             <h5 className=" modal-title" id="exampleModalLabel">
               Choose your registration type:
@@ -116,15 +142,25 @@ const Login = () => {
               <span aria-hidden={true}>×</span>
             </button>
           </div>
-          <ModalBody >
-            <Link href="/register" className="items-center justify-center  flex bg-blue-500 text-white hover:bg-blue-400">
+          <ModalBody>
+            <Link
+              href="/register"
+              className="items-center justify-center  flex bg-blue-500 text-white hover:bg-blue-400"
+            >
               <button className=" items-center justify-center">
-                <span className="items-center justify-center">Register as a Job seeker</span>
+                <span className="items-center justify-center">
+                  Register as a Job seeker
+                </span>
               </button>
             </Link>
-            <Link href="/employer/register" className="items-center justify-center  flex mt-2 bg-black text-white hover:bg-black/75">
+            <Link
+              href="/employer/register"
+              className="items-center justify-center  flex mt-2 bg-black text-white hover:bg-black/75"
+            >
               <button className=" items-center justify-center">
-                <span className="items-center justify-center">Register as a Job Employer</span>
+                <span className="items-center justify-center">
+                  Register as a Job Employer
+                </span>
               </button>
             </Link>
           </ModalBody>
@@ -137,7 +173,6 @@ const Login = () => {
             >
               Close
             </Button>
-            
           </ModalFooter>
         </Modal>
       )}

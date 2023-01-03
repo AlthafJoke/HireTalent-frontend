@@ -10,8 +10,8 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState(null);
   const [updated, setUpdated] = useState(null);
-  const [uploaded, setUploaded] = useState(null)
-  const [success, setSuccess] = useState(false)
+  const [uploaded, setUploaded] = useState(null);
+  const [success, setSuccess] = useState(false);
 
   const router = useRouter();
 
@@ -22,12 +22,12 @@ export const AuthProvider = ({ children }) => {
   }, [user]);
 
   //login user
-  const login = async ({ username, password }) => {
+  const login = async ({ email, password }) => {
     try {
       setLoading(true);
 
       const res = await axios.post("/api/auth/login", {
-        username,
+        email,
         password,
       });
       if (res.data.success) {
@@ -90,7 +90,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   //Register User
-  const register = async ({ firstName, lastName, email, password, confirm_password }) => {
+  const register = async ({
+    firstName,
+    lastName,
+    email,
+    password,
+    confirm_password,
+  }) => {
     try {
       setLoading(true);
 
@@ -100,13 +106,34 @@ export const AuthProvider = ({ children }) => {
         email,
         password,
         confirm_password,
-
       });
       if (res.data.success) {
-        setSuccess(true)
-        setUploaded(true)
+        setSuccess(true);
+        setUploaded(true);
         setLoading(false);
         router.push("/login");
+      }
+    } catch (error) {
+      setLoading(false);
+      setError(
+        error.response &&
+          (error.response.data.detail || error.response.data.error)
+      );
+    }
+  };
+
+  const googleAuth = async () => {
+    try {
+      setLoading(true);
+
+      const res = await axios.post(`${process.env.API_URL}api/google-auth/`, {
+        
+      });
+      if (res.data.success) {
+        loadUser();
+        setIsAuthenticated(true);
+        setLoading(false);
+        router.push("/");
       }
     } catch (error) {
       setLoading(false);
@@ -124,11 +151,14 @@ export const AuthProvider = ({ children }) => {
 
   //updateprofile
   const updateProfile = async (
-    { firstName, lastName, email, password },access_token) => {
+    { firstName, lastName, email, password },
+    access_token
+  ) => {
     try {
       setLoading(true);
 
-      const res = await axios.put(`${process.env.API_URL}api/me/update/`,
+      const res = await axios.put(
+        `${process.env.API_URL}api/me/update/`,
         {
           first_name: firstName,
           last_name: lastName,
@@ -155,39 +185,36 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-    //upload Resume
-    const uploadResume = async (
-      formData ,access_token ) => {
-      try {
-        setLoading(true);
-  
-        const res = await axios.put(`${process.env.API_URL}api/upload/resume/`,
-          formData,
-          {
-            headers: {
-              Authorization: `Bearer ${access_token}`,
-            },
-          }
-        );
-        if (res.data) {
-          
-          setLoading(false);
-          setUploaded(true)
-          
+  //upload Resume
+  const uploadResume = async (formData, access_token) => {
+    try {
+      setLoading(true);
+
+      const res = await axios.put(
+        `${process.env.API_URL}api/upload/resume/`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
         }
-      } catch (error) {
+      );
+      if (res.data) {
         setLoading(false);
-        setError(
-          error.response &&
-            (error.response.data.detail || error.response.data.error)
-        );
+        setUploaded(true);
       }
-    };
+    } catch (error) {
+      setLoading(false);
+      setError(
+        error.response &&
+          (error.response.data.detail || error.response.data.error)
+      );
+    }
+  };
 
   return (
     <AuthContext.Provider
       value={{
-
         loading,
         user,
         isAuthenticated,
@@ -204,7 +231,7 @@ export const AuthProvider = ({ children }) => {
         setUploaded,
         success,
         setSuccess,
-
+        googleAuth,
       }}
     >
       {children}
