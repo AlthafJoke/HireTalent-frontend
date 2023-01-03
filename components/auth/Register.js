@@ -11,6 +11,7 @@ const Register = () => {
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirm_password, setConfirm_password] = useState("")
 
   const { loading, error, isAuthenticated, register, clearErrors } =
     useContext(AuthContext);
@@ -38,7 +39,7 @@ const Register = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     
-    register({ firstName , lastName, email, password });
+    register({ firstName , lastName, email, password, confirm_password });
     
    
   };
@@ -74,6 +75,16 @@ const Register = () => {
                     type="password"
                     placeholder="Enter Your Password"
                     value={password} onChange={(e) => setPassword(e.target.value)}
+                    minLength={6}
+                    required
+                  />
+                </div>
+                <div className="inputBox">
+                  <i aria-hidden className="fas fa-key"></i>
+                  <input
+                    type="password"
+                    placeholder="Confirm Your Password"
+                    value={confirm_password} onChange={(e) => setConfirm_password(e.target.value)}
                     minLength={6}
                     required
                   />

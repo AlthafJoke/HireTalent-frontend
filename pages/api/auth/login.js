@@ -9,7 +9,8 @@ export default async (req, res) =>  {
             const response = await axios.post(`${process.env.API_URL}api/token/`, {
                 username,
                 password
-            }, {
+            }, 
+            {
                 headers: {
                     'Content-Type': 'application/json'
                 }

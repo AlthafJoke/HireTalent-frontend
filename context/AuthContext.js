@@ -90,7 +90,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   //Register User
-  const register = async ({ firstName, lastName, email, password }) => {
+  const register = async ({ firstName, lastName, email, password, confirm_password }) => {
     try {
       setLoading(true);
 
@@ -99,6 +99,8 @@ export const AuthProvider = ({ children }) => {
         last_name: lastName,
         email,
         password,
+        confirm_password,
+
       });
       if (res.data.success) {
         setSuccess(true)
