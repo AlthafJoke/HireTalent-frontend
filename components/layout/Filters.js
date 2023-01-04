@@ -7,6 +7,9 @@ const Filters = () => {
   let queryPrams;
   if (typeof window !== "undefined") {
     queryPrams = new URLSearchParams(window.location.search);
+    queryPrams.delete('page');
+    queryPrams.set('page',1);
+
   }
 
   console.log(queryPrams)

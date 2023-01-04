@@ -2,27 +2,56 @@ import React, { useContext, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import AuthContext from "../../context/AuthContext";
-
+import { useRouter } from "next/router";
 
 const Header = () => {
   const { loading, user, logout } = useContext(AuthContext);
-  
+  const [keyword, setKeyword] = useState("");
+  const [location, setLocation] = useState("");
+  const router = useRouter()
 
+  console.log(user)
 
   const logoutHandler = () => {
-    logout()
-  }
+    logout();
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    
+    if (keyword) {
+      let searchQuery = `/?keyword=${keyword}`;
+
+      router.push(searchQuery);
+    } else {
+      router.push("/");
+    }
+  };
 
   return (
     <div className="navWrapper items-center justify-center ">
       <div className="navContainer items-center justify-center">
         <Link href="/">
-          <div className="logoWrapper">
-            
-            <span className="logo1">Hire</span>
-            <span className="logo2">Talent.com</span>
+          <div className="logoWrapper md:w-3/4 lg:w-1/2 xl:w-1/3">
+            <span className="logo1 sm:w-full ">Hire</span>
+            <span className="logo2 sm:w-full ">Talent.com</span>
           </div>
         </Link>
+        <form onSubmit={submitHandler} className="search-bar w-80 text-dark">
+          <div className="relative rounded-md shadow-sm ">
+            <input
+              id="search"
+              className="form-input search-bar-form  py-2 px-4 block w-full leading-5 rounded-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+              placeholder="Search..."
+              type="search"
+              value={keyword}
+              onChange={(e) => setKeyword(e.target.value)}
+            />
+            <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+              
+            </div>
+          </div>
+        </form>
         <div className="btnsWrapper items-center justify-center">
           <Link href="/employer/jobs/new">
             <button className="postAJobButton flex items-center justify-center">
@@ -45,28 +74,31 @@ const Header = () => {
                 className="dropdown-menu "
                 aria-labelledby="dropDownMenuButton"
               >
-                <Link  href="/employer/jobs/" className="hover:no-underline">
+                <Link href="/employer/jobs/" className="hover:no-underline">
                   <button className="dropdown-item hover:bg-blue-100 ">
-                    <span >My jobs</span>
+                    <span>My jobs</span>
                   </button>
                 </Link>
-                <Link  href="me/applied" className="hover:no-underline">
+                <Link href="me/applied" className="hover:no-underline">
                   <button className="dropdown-item hover:bg-blue-100">
                     <span>Jobs Applied</span>
                   </button>
                 </Link>
-                <Link  href="/me" className="hover:no-underline">
+                <Link href="/me" className="hover:no-underline">
                   <button className="dropdown-item hover:bg-blue-100">
                     <span>Profile</span>
                   </button>
                 </Link>
-                <Link  href="/upload/resume" className="hover:no-underline">
+                <Link href="/upload/resume" className="hover:no-underline">
                   <button className="dropdown-item hover:bg-blue-100">
                     <span>Upload Resume</span>
                   </button>
                 </Link>
-                <Link  href="/" className="hover:no-underline">
-                  <button className="dropdown-item text-red-500 hover:bg-red-100" onClick={() => logout()}>
+                <Link href="/" className="hover:no-underline">
+                  <button
+                    className="dropdown-item text-red-500 hover:bg-red-100"
+                    onClick={() => logout()}
+                  >
                     <span>Logout</span>
                   </button>
                 </Link>

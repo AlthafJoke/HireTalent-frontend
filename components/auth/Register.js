@@ -46,12 +46,12 @@ const Register = () => {
 
   return (
     <div className="modalMask">
-      <div className="modalWrapper">
+      <div className="modalWrapper ">
         
         <div className="right">
           <div className="rightContentWrapper">
             <div className="headerWrapper">
-              <h2> SIGN UP</h2>
+              <h2 > SIGN UP</h2>
             </div>
             <form className="form" onSubmit={submitHandler}>
               <div className="inputWrapper">

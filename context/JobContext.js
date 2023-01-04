@@ -88,7 +88,7 @@ export const JobProvider = ({ children }) => {
 
   //Create a new Job
   const newJob = async (data, access_token) => {
-    console.log(access_token, "hdfjdsfdffd");
+    
 
     try {
       setLoading(true);

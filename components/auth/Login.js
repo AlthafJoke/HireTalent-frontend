@@ -13,6 +13,7 @@ const Login = () => {
   const [modalOpen, setModalOpen] = React.useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
 
   const {
     loading,
@@ -31,8 +32,14 @@ const Login = () => {
   function handleCallbackResponse(response) {
     console.log("Encoded jwt id token :", response.credential);
     var userObject = jwt_decode(response.credential);
-    console.log(userObject);
-    setUser(userObject);
+    var token = response.credential
+
+   
+
+    googleAuth({token})
+    console.log(userObject)
+    
+    
     
     
   }
@@ -80,7 +87,7 @@ const Login = () => {
           <div className="right">
             <div className="rightContentWrapper ">
               <div className="headerWrapper">
-                <h3 className="font-bold"> LOGIN</h3>
+                <h2 > LOGIN</h2>
               </div>
               <form className="form" onSubmit={submitHandler}>
                 <div className="inputWrapper">

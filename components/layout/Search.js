@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Router, { useRouter } from "next/router";
+import  { useRouter } from "next/router";
 
 const Search = () => {
   const [keyword, setKeyword] = useState("");

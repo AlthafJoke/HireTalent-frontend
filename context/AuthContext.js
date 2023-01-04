@@ -122,27 +122,51 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const googleAuth = async () => {
+  const googleAuth = async ({token}) => {
     try {
       setLoading(true);
 
-      const res = await axios.post(`${process.env.API_URL}api/google-auth/`, {
-        
-      });
-      if (res.data.success) {
-        loadUser();
+      const res = await axios.post("/api/auth/google",{
+        token,
+      } );
+
+      if (res.status == 200 ) {
         setIsAuthenticated(true);
         setLoading(false);
-        router.push("/");
+        setUser(res.data.user);
       }
     } catch (error) {
       setLoading(false);
+      setIsAuthenticated(false);
+      setUser(null);
       setError(
         error.response &&
           (error.response.data.detail || error.response.data.error)
       );
     }
   };
+  // const googleAuth = async (googleAuth) => {
+  //   try {
+  //     setLoading(true);
+
+  //     const res = await axios.post(`${process.env.API_URL}api/google-auth/`,{
+  //       token:googleAuth
+  //     });
+  //     if (res.status == 200) {
+  //       loadUser();
+  //       setIsAuthenticated(true);
+  //       setLoading(false);
+  //       router.push("/");
+  //     }
+  //   } catch (error) {
+  //     setLoading(false);
+  //     setError(
+  //       error.response &&
+  //         (error.response.data.detail || error.response.data.error)
+  //     );
+  //   }
+  // };
+
 
   // clear errors
   const clearErrors = () => {

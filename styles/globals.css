@@ -56,6 +56,8 @@ h4{
 
 /* Header */
 
+
+
 .navWrapper {
   
   min-width: 100%;
@@ -437,7 +439,7 @@ footer {
 .modalWrapper {
   
   width: 25rem;
-  height: 70vh;
+  height: 75vh;
   background: rgb(255, 255, 255);
   border-radius: 10px;
   position: relative;
