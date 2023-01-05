@@ -6,8 +6,11 @@ export default async (req, res) =>  {
         const cookies = cookie.parse(req.headers.cookie || '') //if cookie then parse token or if there is no cookie then null
 
         const access = cookies.access || false // if there is not access (token) inside cookie then assign false
+
+        console.log(access, "this is access from user.js")
         
         if(!access){
+            console.log("no access token")
             return res.status(401).json({
                 message: 'Login first to load user'
             })
@@ -23,17 +26,21 @@ export default async (req, res) =>  {
                 }
             })
 
+            console.log("this is response", response)
+
             if (response.data){
                 console.log(response.data)
                 return res.status(200).json({
                     user: response.data
                 })
             }
+            
 
             
 
         }
         catch(error){
+            console.log("this is catch")
             
            
 

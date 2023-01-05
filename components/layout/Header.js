@@ -10,7 +10,7 @@ const Header = () => {
   const [location, setLocation] = useState("");
   const router = useRouter()
 
-  console.log(user)
+  
 
   const logoutHandler = () => {
     logout();

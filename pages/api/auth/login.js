@@ -15,7 +15,7 @@ export default async (req, res) =>  {
                     'Content-Type': 'application/json'
                 }
             })
-
+ 
             if (response.data.access){
                 res.setHeader('Set-Cookie', [
                     cookie.serialize('access', response.data.access, {
@@ -36,12 +36,14 @@ export default async (req, res) =>  {
 
             }
             else {
+                
                 res.status(response.status).json({
                     error: 'Authentication Failed'
                 })
             }
 
         }catch(error){
+            
             console.log(error.response)
             res.status(error.response.status).json({
                 error: error.response && error.response.data.error
