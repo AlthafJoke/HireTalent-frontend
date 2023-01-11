@@ -5,7 +5,7 @@ import AuthContext from "../../context/AuthContext";
 import { useRouter } from "next/router";
 
 const Header = () => {
-  const { loading, user, logout } = useContext(AuthContext);
+  const { loading, user, logout, isRecruiter, isApproved } = useContext(AuthContext);
   const [keyword, setKeyword] = useState("");
   const [location, setLocation] = useState("");
   const router = useRouter()
@@ -53,11 +53,54 @@ const Header = () => {
           </div>
         </form>
         <div className="btnsWrapper items-center justify-center">
+        
+
+          {/* { isApproved ?  <Link href="/employer/jobs/new">
+                <button className="postAJobButton flex items-center justify-center">
+                  <span>Post A Job</span>
+                </button>
+              </Link>:<></>
+
+          
+          
+
+           } */}
+           { isRecruiter ?  <Link href="/employer/jobs/new">
+                <button className="postAJobButton flex items-center justify-center">
+                  <span>Post A Job</span>
+                </button>
+              </Link>:<></>
+
+          
+          
+
+           }
+
+           
+
+          {/* {isRecruiter? (
+            isApproved? (
           <Link href="/employer/jobs/new">
             <button className="postAJobButton flex items-center justify-center">
               <span>Post A Job</span>
             </button>
           </Link>
+
+            ):(
+              <Link href="#">
+              <button className="postAJobButton">
+                <span>Waiting list</span>
+              </button>
+            </Link>
+            )
+          ):(
+            <Link href="/recuriterRegister">
+              <button className="postAJobButton">
+                <span>Register as recruiter</span>
+              </button>
+            </Link>
+          )} */}
+          
 
           {user ? (
             <div className="dropdown ml-3">

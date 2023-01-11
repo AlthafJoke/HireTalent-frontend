@@ -4,13 +4,18 @@
 import NewJob from "../../../components/job/NewJob";
 import Layout from "../../../components/layout/Layout";
 import {isAuthenticatedUser} from "../../../utils/isAuthenticated"
+import AuthContext from "../../../context/AuthContext";
+import { useContext } from "react";
+import StatusVerify from "../../../components/verify/StatusVerify";
 
 export default function NewJobPage({ access_token }) {
+  const {isRecruiter, isApproved} = useContext(AuthContext)
   
   return (
     <>
     <Layout title="Post a new job">
-      <NewJob access_token={access_token} />
+      {isRecruiter && isApproved? <NewJob access_token={access_token} />:<StatusVerify/>}
+      
     </Layout>
     </>
   );

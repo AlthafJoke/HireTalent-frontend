@@ -13,6 +13,9 @@ export const AuthProvider = ({ children }) => {
   const [uploaded, setUploaded] = useState(null);
   const [success, setSuccess] = useState(false);
 
+  const [isRecruiter, setIsRecruiter] = useState(false);
+  const [isApproved, setIsApproved] = useState(false);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -36,6 +39,16 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
         router.push("/");
       }
+
+      if(res.data.user.is_recruiter == "True"){
+        setIsRecruiter(true);
+      }
+      else{
+        setIsRecruiter(false);
+      }
+
+
+
     } catch (error) {
       setLoading(false);
       setError(
@@ -57,9 +70,24 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
         setUser(res.data.user);
       }
+      console.log(res.data.user.is_recruiter, 'dsfjsd')
+
+      if (res.data.user.is_recruiter == "True"){
+        setIsRecruiter(true);
+      }
+
+      if (res.data.user.is_approved == "True"){
+        setIsApproved(true);
+      }
+
+
+
+
     } catch (error) {
       setLoading(false);
       setIsAuthenticated(false);
+      setIsAuthenticated(false);
+      setIsRecruiter(false);
       setUser(null);
       setError(
         error.response &&
@@ -75,12 +103,13 @@ export const AuthProvider = ({ children }) => {
 
       if (res.data.success) {
         setIsAuthenticated(false);
-
+        setIsRecruiter(false);
         setUser(null);
       }
     } catch (error) {
       setLoading(false);
       setIsAuthenticated(false);
+      setIsRecruiter(false);
       setUser(null);
       setError(
         error.response &&
@@ -96,6 +125,8 @@ export const AuthProvider = ({ children }) => {
     email,
     password,
     confirm_password,
+    company,
+    designation,
   }) => {
     try {
       setLoading(true);
@@ -106,6 +137,8 @@ export const AuthProvider = ({ children }) => {
         email,
         password,
         confirm_password,
+        company,
+        designation,
       });
       if (res.data.success) {
         setSuccess(true);
@@ -145,27 +178,7 @@ export const AuthProvider = ({ children }) => {
       );
     }
   };
-  // const googleAuth = async (googleAuth) => {
-  //   try {
-  //     setLoading(true);
-
-  //     const res = await axios.post(`${process.env.API_URL}api/google-auth/`,{
-  //       token:googleAuth
-  //     });
-  //     if (res.status == 200) {
-  //       loadUser();
-  //       setIsAuthenticated(true);
-  //       setLoading(false);
-  //       router.push("/");
-  //     }
-  //   } catch (error) {
-  //     setLoading(false);
-  //     setError(
-  //       error.response &&
-  //         (error.response.data.detail || error.response.data.error)
-  //     );
-  //   }
-  // };
+ 
 
 
   // clear errors
@@ -256,6 +269,8 @@ export const AuthProvider = ({ children }) => {
         success,
         setSuccess,
         googleAuth,
+        isRecruiter,
+        isApproved,
       }}
     >
       {children}

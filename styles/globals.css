@@ -449,6 +449,39 @@ footer {
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
     rgba(17, 17, 26, 0.05) 0px 8px 32px;
 }
+
+.employerRegForm {
+  width: 30rem;
+  height: 85vh;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  z-index: 20;
+  /* border: 1px solid rgb(255, 255, 255); */
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+}
+
+.verify-status{
+  width: 25rem;
+  height: 75vh;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  z-index: 20;
+  /* border: 1px solid rgb(255, 255, 255); */
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+
+}
+
+
+
+
+
+
 .h70 {
   height: 60%;
 }
