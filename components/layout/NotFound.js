@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "next/link";
+
 
 
 const NotFound = () => {
@@ -31,7 +33,7 @@ const NotFound = () => {
         <span>4</span>
       </div>
       <h5 className="text-xl text-white">
-        Page Not Found. Go to <a href="/"> <span className="ml-3 btn btn-primary shadow" >Homepage</span></a>{" "}
+        Page Not Found. Go to <Link href="/"> <span className="ml-3 btn btn-primary shadow" >Homepage</span></Link>{" "}
       </h5>
 
     </div>
