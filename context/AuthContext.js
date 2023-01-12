@@ -37,7 +37,11 @@ export const AuthProvider = ({ children }) => {
         loadUser();
         setIsAuthenticated(true);
         setLoading(false);
+        if(res.data.user.is_recruiter == "True"){
+          setIsRecruiter(true);
+        }
         router.push("/");
+
       }
 
       if(res.data.user.is_recruiter == "True"){
