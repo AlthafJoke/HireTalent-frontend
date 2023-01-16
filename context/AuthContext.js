@@ -253,6 +253,37 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+
+  const resetPasswordRequest = async (email) => {
+    setLoading(true);
+
+    try{
+      console.log(email, "this is email")
+      const response = axios.post(`${process.env.API_URL}api/resetPasswordRequest/`, {email})
+
+      console.log(response, "this is response from reset password")
+
+      if(response){ 
+        setLoading(false)
+
+
+      }
+      
+
+
+      
+
+    }
+    catch(error){
+      console.log(error)
+      setLoading(false);
+      setError(
+        error.response &&
+          (error.response.data.detail || error.response.data.error)
+      );
+    }
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -275,6 +306,7 @@ export const AuthProvider = ({ children }) => {
         googleAuth,
         isRecruiter,
         isApproved,
+        resetPasswordRequest,
       }}
     >
       {children}

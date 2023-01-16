@@ -1,7 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import AuthContext from "../../context/AuthContext";
 
 const ResetPassword = () => {
     const [email , setEmail] = useState('')
+    const {resetPasswordRequest, loading} = useContext(AuthContext)
+
+
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      resetPasswordRequest(email)
+    }
+
+    
+
+
+
+
+
   return (
     <div>
       <div className="modalMask">
@@ -11,7 +26,7 @@ const ResetPassword = () => {
               <div className="resetPassword">
                 <h2>Enter your email address</h2>
               </div>
-              <form className="form" >
+              <form className="form" onSubmit={handleSubmit}>
                 <div className="inputWrapper">
                   <div className="inputBox">
                     <i aria-hidden className="fas fa-envelope"></i>
@@ -30,7 +45,7 @@ const ResetPassword = () => {
                 </div>
                 <div className="loginButtonWrapper">
                   <button type="submit" className="loginButton">
-                    Submit
+                    {loading? "Submiting..": "Submit"}
                   </button>
                 </div>
                 
