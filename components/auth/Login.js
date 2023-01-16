@@ -1,19 +1,17 @@
 import React, { useState, useContext, useEffect } from "react";
 import Image from "next/image";
 import AuthContext from "../../context/AuthContext";
-import jwt_decode from "jwt-decode"
+import jwt_decode from "jwt-decode";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Link from "next/link";
 // reactstrap components
 import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
 
-
 const Login = () => {
   const [modalOpen, setModalOpen] = React.useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
 
   const {
     loading,
@@ -27,21 +25,15 @@ const Login = () => {
   } = useContext(AuthContext);
 
   const Router = useRouter();
-  const [user, setUser] = useState()
+  const [user, setUser] = useState();
 
   function handleCallbackResponse(response) {
     console.log("Encoded jwt id token :", response.credential);
     var userObject = jwt_decode(response.credential);
-    var token = response.credential
+    var token = response.credential;
 
-   
-
-    googleAuth({token})
-    console.log(userObject)
-    
-    
-    
-    
+    googleAuth({ token });
+    console.log(userObject);
   }
 
   useEffect(() => {
@@ -87,7 +79,7 @@ const Login = () => {
           <div className="right">
             <div className="rightContentWrapper ">
               <div className="headerWrapper">
-                <h2 > LOGIN</h2>
+                <h2> LOGIN</h2>
               </div>
               <form className="form" onSubmit={submitHandler}>
                 <div className="inputWrapper">
@@ -113,6 +105,11 @@ const Login = () => {
                       required
                     />
                   </div>
+                  <Link href='reset_password'>
+                    <p className="mx-4" style={{ color: "grey" }}>
+                      Forgot Password ?
+                    </p>
+                  </Link>
                 </div>
                 <div className="loginButtonWrapper">
                   <button type="submit" className="loginButton">
@@ -120,15 +117,18 @@ const Login = () => {
                   </button>
                 </div>
                 <div style={{ textDecoration: "none" }} className="signup">
-                  Not having account?{" "}
+                  <p style={{ color: "grey" }}>Not having account?</p>
                   <button
-                    className="btn btn-primary btn-sm mx-3 shadow"
+                    className="mx-2 text-primary pointer"
                     onClick={() => setModalOpen(!modalOpen)}
                   >
                     Register
                   </button>
                 </div>
-                <div id="signInDiv" className="d-flex mt-5 items-center justify-center"></div>
+                <div
+                  id="signInDiv"
+                  className="d-flex mt-2 items-center justify-center"
+                ></div>
               </form>
             </div>
           </div>

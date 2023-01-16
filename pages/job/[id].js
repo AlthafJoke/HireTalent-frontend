@@ -32,7 +32,7 @@ export async function getServerSideProps({ req, params}) {
   
   const job = response.data.job;
   const candidates = response.data.candidates;
-  const access_token = req.cookies.access
+  const access_token = req.cookies.access || ''
 
   return {
       props: {
@@ -44,7 +44,11 @@ export async function getServerSideProps({ req, params}) {
 
   }
   catch (error) {
-    console.log(error)
+    return {
+      props: {
+        error: "error.response.data.detail",
+      },
+    };
   }
   
 }

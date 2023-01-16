@@ -506,6 +506,25 @@ footer {
   align-items: center;
   margin-bottom: 30px;
 }
+
+.resetPassword {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  margin-bottom: 50px;
+}
+
+.resetPassword h2 {
+  display: flex;
+  /* justify-content: center; */
+  font-size: 30px;
+  color: #505050;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+
+
 .headerWrapper h2 {
   display: flex;
   justify-content: center;
@@ -615,11 +634,11 @@ footer {
 .signup {
   display: flex;
   justify-content: center;
-  font-size: 16px;
-  font-weight: bold;
-  margin-top: 30px;
-  cursor: pointer;
-  color: rgb(36, 36, 36);
+  /* font-size: 15px; */
+  /* font-weight: bold; */
+  margin-top: 12px;
+  /* cursor: pointer; */
+  /* color: rgb(44, 30, 170); */
 }
 .signup a {
   text-decoration: none;
