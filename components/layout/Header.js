@@ -10,6 +10,8 @@ const Header = () => {
   const [location, setLocation] = useState("");
   const router = useRouter()
 
+   console.log(user)
+
   
 
   const logoutHandler = () => {
@@ -111,12 +113,13 @@ const Header = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <span>Hi, {user.first_name}</span>
+                <span>Hi, {user.first_name + user.last_name}</span>
               </a>
               <div
                 className="dropdown-menu "
                 aria-labelledby="dropDownMenuButton"
               >
+                
                 <Link href="/employer/jobs/" className="hover:no-underline">
                   <button className="dropdown-item hover:bg-blue-100 ">
                     <span>My jobs</span>
@@ -156,6 +159,8 @@ const Header = () => {
               </Link>
             )
           )}
+
+
         </div>
       </div>
     </div>

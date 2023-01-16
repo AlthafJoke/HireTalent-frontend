@@ -41,7 +41,6 @@ export async function getServerSideProps({ req, params}) {
           access_token,
       },
   };
-
   }
   catch (error) {
     return {
