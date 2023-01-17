@@ -13,7 +13,7 @@ const TopicStats = () => {
       toast.error(error);
       clearErrors();
     }
-  }, [error]);
+  });
 
   const submitHandler = (e) => {
     e.preventDefault();

@@ -23,7 +23,7 @@ const MyJobs = ({ jobs, access_token }) => {
       }
 
 
-    }, [error, deleted]) 
+    }) 
 
     const deleteJobHandler = (id) => {
       deleteJob(id, access_token)

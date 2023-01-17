@@ -16,7 +16,7 @@ const UpdateProfile = ({access_token}) => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log("user")
+    
     if (user){
         setFirstName(user.first_name)
         setLastName(user.last_name)
@@ -35,7 +35,7 @@ const UpdateProfile = ({access_token}) => {
       router.push('/me')
     }
     
-  }, [ error, user, updated]);
+  });
 
   const submitHandler = (e) => {
     e.preventDefault();
