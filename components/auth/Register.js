@@ -34,7 +34,7 @@ const Register = () => {
     if (isAuthenticated && !loading) {
       Router.push("/");
     }
-  }, [isAuthenticated, error, loading]);
+  });
 
   const submitHandler = (e) => {
     e.preventDefault();
