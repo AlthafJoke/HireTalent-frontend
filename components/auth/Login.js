@@ -50,7 +50,7 @@ const Login = () => {
       theme: "outline",
       size: "large",
     });
-  }, []);
+  });
 
   useEffect(() => {
     if (error) {

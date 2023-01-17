@@ -1,7 +1,7 @@
 import axios from "axios";
 import cookie from 'cookie'
 
-export default async (req, res) =>  {
+const UserApi = async (req, res) =>  {
     if(req.method === 'GET'){
         const cookies = cookie.parse(req.headers.cookie || '') //if cookie then parse token or if there is no cookie then null
 
@@ -52,3 +52,5 @@ export default async (req, res) =>  {
     }
 
 }
+
+export default UserApi

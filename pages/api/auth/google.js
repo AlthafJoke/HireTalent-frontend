@@ -1,7 +1,7 @@
 import axios from "axios";
 import cookie from "cookie";
 
-const Google = async (req, res) => {
+const GoogleApi = async (req, res) => {
   if (req.method === "POST") {
     const { token } = req.body;
     
@@ -53,4 +53,4 @@ const Google = async (req, res) => {
   }
 };
 
-export default Google
+export default GoogleApi
