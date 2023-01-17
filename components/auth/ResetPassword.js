@@ -1,15 +1,20 @@
 import React, { useContext, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 
-const ResetPassword = () => {
+const ResetPassword = ({data}) => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-    const {resetPassword} = useContext(AuthContext)
+    const [uid, setUid] = useState('')
+    const {resetPassword, loading} = useContext(AuthContext)
+    
+
+    console.log(data, "this is data")
 
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        resetPassword(password, confirmPassword)
+        setUid(data)
+        resetPassword(password, confirmPassword, data)
     }
 
 
@@ -49,7 +54,7 @@ const ResetPassword = () => {
                 </div>
                 <div className="loginButtonWrapper">
                   <button type="submit" className="loginButton">
-                    {/* {loading ? "Authenticating.." : "Login"} */}
+                    {loading ? "saving.." : "save"}
                   </button>
                 </div>
                 

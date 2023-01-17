@@ -16,6 +16,7 @@ export const AuthProvider = ({ children }) => {
   const [isRecruiter, setIsRecruiter] = useState(false);
   const [isApproved, setIsApproved] = useState(false);
   const [send, setSend] = useState(false)
+  const [repass, changeRePass] = useState(false) 
 
   const router = useRouter();
 
@@ -75,7 +76,7 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
         setUser(res.data.user);
       }
-      console.log(res.data.user.is_recruiter, 'dsfjsd')
+      
 
       if (res.data.user.is_recruiter == "True"){
         setIsRecruiter(true);
@@ -274,7 +275,7 @@ export const AuthProvider = ({ children }) => {
       
     }
     catch(error){
-      console.log(error)
+      
       setLoading(false);
       setError(
         error.response &&
@@ -284,10 +285,18 @@ export const AuthProvider = ({ children }) => {
   }
 
 
-  const resetPassword = async (password, confirmPassword) => {
-    const response = await axios.post(`${process.env.API_URL}api/change_password/`, {password, confirmPassword})
+  const resetPassword = async (password, confirmPassword, uid) => {
+    setLoading(true);
 
-    // console.log(password)
+
+    const response = await axios.post(`${process.env.API_URL}api/reset-password/`, {password, confirmPassword, uid})
+
+    if(response.data.success ){
+      setLoading(false)
+      changeRePass(true)
+      
+      router.push("/login");
+    }
     
 
   }
@@ -318,6 +327,7 @@ export const AuthProvider = ({ children }) => {
         send,
         setSend,
         resetPassword,
+        repass
       }}
     >
       {children}

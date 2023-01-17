@@ -3,10 +3,10 @@ import ResetPassword from '../../../components/auth/ResetPassword'
 
 import axios from 'axios'
 
-export default function VerifyPage() {
+export default function ResetPasswordPage({data}) {
   return (
     <Layout >
-        <ResetPassword/> 
+        <ResetPassword data={data}/> 
     </Layout>
   )
 }
@@ -20,6 +20,9 @@ export async function getServerSideProps({ req, params }) {
     })
   
     const data = res.data
+    console.log(res, "this is data")
+
+    
     
 
   

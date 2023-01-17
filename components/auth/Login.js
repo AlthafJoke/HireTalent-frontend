@@ -22,6 +22,7 @@ const Login = () => {
     success,
     setSuccess,
     googleAuth,
+    repass,
   } = useContext(AuthContext);
 
   const Router = useRouter();
@@ -60,11 +61,15 @@ const Login = () => {
       toast.success("Registration completed successfully");
       setSuccess(false);
     }
+    if(repass){
+      toast.success("Password changed successfully");
+
+    }
 
     if (isAuthenticated && !loading) {
       Router.push("/");
     }
-  }, [isAuthenticated, error, loading]);
+  }, [isAuthenticated, error, loading, repass]);
 
   const submitHandler = (e) => {
     e.preventDefault();
