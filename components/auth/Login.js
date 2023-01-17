@@ -72,7 +72,7 @@ const Login = () => {
     if (isAuthenticated && !loading) {
       Router.push("/");
     }
-  }, [isAuthenticated, error, loading, repass]);
+  });
 
   const submitHandler = (e) => {
     e.preventDefault();
