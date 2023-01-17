@@ -1,5 +1,5 @@
 import Layout from '../../components/layout/Layout'
-import  VerifyRec from '../../components/verify/verifyRec'
+import VerifyRec from '../../components/verify/VerifyRec'
 
 import axios from 'axios'
 
@@ -7,6 +7,7 @@ export default function VerifyPage({data}) {
   return (
     <Layout title={data.first_name}>
         <VerifyRec data={data}/>
+       
     </Layout>
   )
 }
