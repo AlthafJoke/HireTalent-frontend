@@ -35,7 +35,7 @@ const UpdateProfile = ({access_token}) => {
       router.push('/me')
     }
     
-  });
+  },[user, error, updated, clearErrors, setUpdated, router]);
 
   const submitHandler = (e) => {
     e.preventDefault();

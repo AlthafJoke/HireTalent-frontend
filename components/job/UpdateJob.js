@@ -61,7 +61,7 @@ const UpdateJob = ({ job, access_token }) => {
       setPositions("");
       setCompany("");
     }
-  });
+  }, [job, error, updated, clearErrors, setUpdated, router]);
 
   const submitHandler = (e) => {
     e.preventDefault();
