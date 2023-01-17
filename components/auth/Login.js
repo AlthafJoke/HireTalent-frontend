@@ -23,6 +23,7 @@ const Login = () => {
     setSuccess,
     googleAuth,
     repass,
+    setRePass,
   } = useContext(AuthContext);
 
   const Router = useRouter();
@@ -63,6 +64,8 @@ const Login = () => {
     }
     if(repass){
       toast.success("Password changed successfully");
+      setRePass(false)
+
 
     }
 

@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
   const [isRecruiter, setIsRecruiter] = useState(false);
   const [isApproved, setIsApproved] = useState(false);
   const [send, setSend] = useState(false)
-  const [repass, changeRePass] = useState(false) 
+  const [repass, setRePass] = useState(false) 
 
   const router = useRouter();
 
@@ -293,7 +293,7 @@ export const AuthProvider = ({ children }) => {
 
     if(response.data.success ){
       setLoading(false)
-      changeRePass(true)
+      setRePass(true)
       
       router.push("/login");
     }
@@ -327,7 +327,8 @@ export const AuthProvider = ({ children }) => {
         send,
         setSend,
         resetPassword,
-        repass
+        repass, 
+        setRePass,
       }}
     >
       {children}
