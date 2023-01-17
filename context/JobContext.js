@@ -173,7 +173,7 @@ export const JobProvider = ({ children }) => {
 
   // clear errors
   const clearErrors = () => {
-    setError(null);
+    setError('');
   };
 
   return (
