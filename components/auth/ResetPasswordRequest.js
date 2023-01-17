@@ -3,8 +3,8 @@ import AuthContext from "../../context/AuthContext";
 import Link from "next/link";
 import { toast } from "react-toastify";
 
-const resetPasswordRequest = () => {
-  const [email, setEmail] = useState("");
+const ResetPasswordRequest = () => {
+  const [email, setEmail] = useState('')
   // const [send, setSend] = useState(false)
 
   const { resetPasswordRequest, loading, send, setSend, error,clearErrors } = useContext(AuthContext);
@@ -109,4 +109,4 @@ const resetPasswordRequest = () => {
   );
 };
 
-export default resetPasswordRequest;
+export default ResetPasswordRequest;
