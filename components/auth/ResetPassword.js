@@ -1,54 +1,57 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 
 const ResetPassword = () => {
-    const [email , setEmail] = useState('')
-    const {resetPasswordRequest, loading} = useContext(AuthContext)
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const {resetPassword} = useContext(AuthContext)
 
 
     const handleSubmit = (e) => {
-      e.preventDefault()
-      resetPasswordRequest(email)
+        e.preventDefault()
+        resetPassword(password, confirmPassword)
     }
-
-    
-
-
 
 
 
   return (
-    <div>
-      <div className="modalMask">
+    <div className="modalMask">
         <div className="modalWrapper ">
           <div className="right">
             <div className="rightContentWrapper ">
               <div className="resetPassword">
-                <h2>Enter your email address</h2>
+                <h2>Reset Your Password</h2>
               </div>
               <form className="form" onSubmit={handleSubmit}>
                 <div className="inputWrapper">
+                  
                   <div className="inputBox">
-                    <i aria-hidden className="fas fa-envelope"></i>
+                    <i aria-hidden className="fas fa-key"></i>
                     <input
-                      type="email"
-                      placeholder="Enter Your Email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      pattern="\S+@\S+\.\S+"
-                      title="your email is invalid"
+                      type="password"
+                      placeholder="Enter New Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       required
                     />
                   </div>
-                 
-                 
+                  <div className="inputBox">
+                    <i aria-hidden className="fas fa-key"></i>
+                    <input
+                      type="password"
+                      placeholder="Confirm Password"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      required
+                    />
+                  </div>
+                  
                 </div>
                 <div className="loginButtonWrapper">
                   <button type="submit" className="loginButton">
-                    {loading? "Submiting..": "Submit"}
+                    {/* {loading ? "Authenticating.." : "Login"} */}
                   </button>
                 </div>
-                
                 
                 
               </form>
@@ -56,7 +59,6 @@ const ResetPassword = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

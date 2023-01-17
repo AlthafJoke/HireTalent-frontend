@@ -516,11 +516,11 @@ footer {
 
 .resetPassword h2 {
   display: flex;
-  /* justify-content: center; */
-  font-size: 30px;
+  justify-content: center;
+  font-size: 26px;
   color: #505050;
   font-weight: bold;
-  margin-left: 10px;
+  
 }
 
 

@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
 
   const [isRecruiter, setIsRecruiter] = useState(false);
   const [isApproved, setIsApproved] = useState(false);
+  const [send, setSend] = useState(false)
 
   const router = useRouter();
 
@@ -258,21 +259,19 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
 
     try{
-      console.log(email, "this is email")
-      const response = axios.post(`${process.env.API_URL}api/resetPasswordRequest/`, {email})
+      
+      const response = await axios.post(`${process.env.API_URL}api/forgot-password/`, {email})
 
-      console.log(response, "this is response from reset password")
+      
 
-      if(response){ 
+      if(response.data){ 
         setLoading(false)
+        
+        setSend(true)
 
 
       }
       
-
-
-      
-
     }
     catch(error){
       console.log(error)
@@ -282,6 +281,15 @@ export const AuthProvider = ({ children }) => {
           (error.response.data.detail || error.response.data.error)
       );
     }
+  }
+
+
+  const resetPassword = async (password, confirmPassword) => {
+    const response = await axios.post(`${process.env.API_URL}api/change_password/`, {password, confirmPassword})
+
+    // console.log(password)
+    
+
   }
 
   return (
@@ -307,6 +315,9 @@ export const AuthProvider = ({ children }) => {
         isRecruiter,
         isApproved,
         resetPasswordRequest,
+        send,
+        setSend,
+        resetPassword,
       }}
     >
       {children}

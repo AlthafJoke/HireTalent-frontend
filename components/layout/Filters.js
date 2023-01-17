@@ -15,10 +15,10 @@ const Filters = () => {
   console.log(queryPrams)
 
   function handleClick(checkbox) {
-    console.log("click is working");
+    
 
     if (typeof window !== "undefined") {
-      console.log("if is working");
+      
       const checkboxes = document.getElementsByName(checkbox.name);
       console.log(checkboxes);
 

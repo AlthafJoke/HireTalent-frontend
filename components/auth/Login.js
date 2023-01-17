@@ -105,7 +105,7 @@ const Login = () => {
                       required
                     />
                   </div>
-                  <Link href='reset_password'>
+                  <Link href='reset_password-request'>
                     <p className="mx-4" style={{ color: "grey" }}>
                       Forgot Password ?
                     </p>

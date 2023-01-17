@@ -18,7 +18,6 @@ export default function JobDetailsPage( {job, candidates, access_token } ) {
   return (
     <>
     <Layout>
-      
       <JobDetails job={job} candidates={candidates} access_token={access_token}/>
     </Layout>
       
