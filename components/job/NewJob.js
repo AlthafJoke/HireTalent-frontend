@@ -43,7 +43,7 @@ const NewJob = ({ access_token }) => {
       setPositions("")
       setCompany("")
     }
-  });
+  }, [error, created]);
 
   const submitHandler = (e) => {
     e.preventDefault();
