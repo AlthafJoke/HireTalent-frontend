@@ -15,7 +15,7 @@ const JobDetails = ({ job, candidates, access_token }) => {
     }
 
     checkJobApplied(job.id, access_token);
-  });
+  },[] );
 
   const applyToJobHandler = () => {
     applyToJob(job.id, access_token);
