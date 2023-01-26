@@ -17,18 +17,22 @@ const Header = () => {
     <div className="header">
       <nav className="nav">
         <ul className="nav-items">
+          <Link href='/recruiter'>
           <li className="nav-item">
             <span class="material-icons-outlined"> Home </span>
           </li>
+          </Link>
           <li className="nav-item">
             <span class="material-icons-outlined">Dashboard</span>
           </li>
           <li className="nav-item">
             <span class="material-icons-outlined"> My Jobs </span>
           </li>
+          <Link href='/employer/jobs/new'>
           <div className="btn btn-primary btn">
             post job
           </div>
+          </Link>
         </ul>
         
         

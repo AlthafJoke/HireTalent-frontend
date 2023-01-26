@@ -36,6 +36,7 @@ export const AuthProvider = ({ children }) => {
         password,
       });
       if (res.data.success) {
+        console.log(res.data)
         loadUser();
         setIsAuthenticated(true);
         setLoading(false);
