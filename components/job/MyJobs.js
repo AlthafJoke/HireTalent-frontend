@@ -69,7 +69,8 @@ const MyJobs = ({ jobs, access_token }) => {
         
         action: (
           <div className="table-action-items">
-            <Link href={`/job/${job.id}`}>
+            {/* <Link href={`/job/${job.id}`}> */}
+            <Link href={`/employer/jobs/view/${job.id}`}>
               <button className="btn btn-dark btn-sm">
                 <i aria-hidden className="fa fa-eye"></i>
               </button>

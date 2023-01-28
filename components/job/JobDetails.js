@@ -1,23 +1,42 @@
 import moment from "moment";
 import React, { useEffect, useContext, useState } from "react";
 import { toast } from "react-toastify";
+import AuthContext from "../../context/AuthContext";
 import JobContext from "../../context/JobContext";
-
+import { useRouter } from "next/router";
 
 const JobDetails = ({ job, candidates, access_token }) => {
-  const { applyToJob, applied, clearErrors, error, loading, checkJobApplied } =
-    useContext(JobContext);
+  const { isRecruiter} = useContext(AuthContext)
+  const router = useRouter();
+  const {
+    applyToJob,
+    applied,
+    clearErrors,
+    error,
+    loading,
+    checkJobApplied,
+    
+  } = useContext(JobContext);
+
+  console.log(isRecruiter,"test")
+
+  
+
+  
 
   useEffect(() => {
     if (error) {
-      toast.error(error);
+      // toast.error(error);
+      router.push('/upload/resume')
       clearErrors();
     }
 
     checkJobApplied(job.id, access_token);
-  },[] );
+  }, [error]);
 
   const applyToJobHandler = () => {
+    
+    
     applyToJob(job.id, access_token);
   };
 
@@ -44,9 +63,9 @@ const JobDetails = ({ job, candidates, access_token }) => {
 
                 <div className="mt-3">
                   <span>
-                    {loading ? (
-                      "Loading.."
-                    ) : applied ? (
+                    {isRecruiter  ? (
+                      <></>
+                    ) : applied   ? (
                       <button
                         disabled
                         className="btn btn-success px-4 py-2 apply-btn"
