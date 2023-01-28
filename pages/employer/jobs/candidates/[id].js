@@ -1,4 +1,5 @@
-import Layout from "../../../../components/layout/Layout";
+// import Layout from "../../../../components/layout/Layout";
+import Layout from "../../../../components/recruiter/layout/Layout";
 import axios from "axios";
 import JobCandidates from "../../../../components/job/JobCandidates";
 import { isAuthenticatedUser } from "../../../../utils/isAuthenticated";

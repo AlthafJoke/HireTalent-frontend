@@ -1,5 +1,7 @@
 import axios from "axios";
-import Layout from "../../../components/layout/Layout";
+// import Layout from "../../../components/layout/Layout";
+
+import Layout from "../../../components/recruiter/layout/Layout";
 import MyJobs from "../../../components/job/MyJobs";
 import { isAuthenticatedUser } from "../../../utils/isAuthenticated";
 

@@ -35,9 +35,7 @@ const Layout = ({ children, title = "HireTalent - Find your job now" }) => {
       <ToastContainer position="top-right" />
 
       <Header />
-
       {children}
-
       <Footer />
     </div>
   );

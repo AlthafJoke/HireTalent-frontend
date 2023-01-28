@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-// import './style.css'
+import style from "../../../styles/admin.module.css";
 
 const Header = () => {
   return (
@@ -17,30 +17,30 @@ const Header = () => {
     <div className="header">
       <nav className="nav">
         <ul className="nav-items">
-          <Link href='/recruiter'>
-          <li className="nav-item">
-            <span class="material-icons-outlined"> Home </span>
-          </li>
+          <Link href="/recruiter">
+            <li className="nav-item">
+              <span class="material-icons-outlined"> Home </span>
+            </li>
           </Link>
           <li className="nav-item">
             <span class="material-icons-outlined">Dashboard</span>
           </li>
-          <li className="nav-item">
-            <span class="material-icons-outlined"> My Jobs </span>
-          </li>
-          <Link href='/employer/jobs/new'>
-          <div className="btn btn-primary btn">
-            post job
-          </div>
+          <Link href='/employer/jobs/'>
+            <li className="nav-item">
+              <span class="material-icons-outlined"> My Jobs </span>
+            </li>
+          </Link>
+          <Link href="/employer/jobs/new">
+            <div className="btn btn-primary btn">post job</div>
           </Link>
         </ul>
-        
-        
-      <div className="btn">
-        <button className="btn btn-primary  ">logout</button>
-        
-      </div>
+
+        <div className="btn">
+          <button className="btn btn-primary  ">logout</button>
+        </div>
       </nav>
+
+      {/* <h1 className={style.name}>hello</h1> */}
     </div>
   );
 };
