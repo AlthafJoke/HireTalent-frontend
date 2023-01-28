@@ -5,22 +5,19 @@ import AuthContext from "../../context/AuthContext";
 import { useRouter } from "next/router";
 
 const Header = () => {
-  const { loading, user, logout, isRecruiter, isApproved } = useContext(AuthContext);
+  const { loading, user, logout, isRecruiter, isApproved, isLogout } = useContext(AuthContext);
   const [keyword, setKeyword] = useState("");
   const [location, setLocation] = useState("");
-  const router = useRouter()
+  const router = useRouter();
+
 
   //  console.log(user)
 
-  
-
-  const logoutHandler = () => {
-    logout();
-  };
+ 
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    
+
     if (keyword) {
       let searchQuery = `/?keyword=${keyword}`;
 
@@ -49,14 +46,10 @@ const Header = () => {
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
             />
-            <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-              
-            </div>
+            <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"></div>
           </div>
         </form>
         <div className="btnsWrapper items-center justify-center">
-        
-
           {/* { isApproved ?  <Link href="/employer/jobs/new">
                 <button className="postAJobButton flex items-center justify-center">
                   <span>Post A Job</span>
@@ -67,44 +60,107 @@ const Header = () => {
           
 
            } */}
-           { isRecruiter ?  <Link href="/employer/jobs/new">
-                <button className="postAJobButton flex items-center justify-center">
-                  <span>Post A Job</span>
-                </button>
-              </Link>:<></>
-
-          
-          
-
-           }
-
-           
-
-          {/* {isRecruiter? (
-            isApproved? (
-          <Link href="/employer/jobs/new">
-            <button className="postAJobButton flex items-center justify-center">
-              <span>Post A Job</span>
-            </button>
-          </Link>
-
-            ):(
-              <Link href="#">
-              <button className="postAJobButton">
-                <span>Waiting list</span>
+          {isRecruiter ? (
+            <Link href="/employer/jobs/new">
+              <button className="postAJobButton flex items-center justify-center">
+                <span>Post A Job</span>
               </button>
             </Link>
+          ) : (
+            <></>
+          )}
+
+          {isRecruiter ? (
+            <div className="dropdown ml-3">
+              <a
+                className="btn dropdown-toggle mr-4 text-black"
+                id="dropDownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <span>Hi, {user.first_name + user.last_name}</span>
+              </a>
+              <div
+                className="dropdown-menu "
+                aria-labelledby="dropDownMenuButton"
+              >
+                <Link href="/recruiter" className="hover:no-underline">
+                  <button className="dropdown-item hover:bg-blue-100">
+                    <span>Dashboard</span>
+                  </button>
+                </Link>
+
+                <Link href="/me" className="hover:no-underline">
+                  <button className="dropdown-item hover:bg-blue-100">
+                    <span>Profile</span>
+                  </button>
+                </Link>
+                <Link href="/" className="hover:no-underline">
+                  <button
+                    className="dropdown-item text-red-500 hover:bg-red-100"
+                    onClick={() => logout()}
+                  >
+                    <span>Logout</span>
+                  </button>
+                </Link>
+              </div>
+            </div>
+          ) : (
+            user && (
+              <div className="dropdown ml-3">
+                <a
+                  className="btn dropdown-toggle mr-4 text-black"
+                  id="dropDownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <span>Hi, {user.first_name + user.last_name}</span>
+                </a>
+                <div
+                  className="dropdown-menu "
+                  aria-labelledby="dropDownMenuButton"
+                >
+                  <Link href="me/applied" className="hover:no-underline">
+                    <button className="dropdown-item hover:bg-blue-100">
+                      <span>Jobs Applied</span>
+                    </button>
+                  </Link>
+                  <Link href="/me" className="hover:no-underline">
+                    <button className="dropdown-item hover:bg-blue-100">
+                      <span>Profile</span>
+                    </button>
+                  </Link>
+                  <Link href="/upload/resume" className="hover:no-underline">
+                    <button className="dropdown-item hover:bg-blue-100">
+                      <span>Upload Resume</span>
+                    </button>
+                  </Link>
+                  <Link href="/" className="hover:no-underline">
+                    <button
+                      className="dropdown-item text-red-500 hover:bg-red-100"
+                      onClick={() => logout()}
+                    >
+                      <span>Logout</span>
+                    </button>
+                  </Link>
+                </div>
+              </div>
             )
-          ):(
-            <Link href="/recuriterRegister">
-              <button className="postAJobButton">
-                <span>Register as recruiter</span>
+          )}
+
+          {isLogout ? (
+            <Link href="/login" className="items-center justify-center">
+              <button className="loginButtonHeader items-center justify-center">
+                <span className="items-center justify-center">Login</span>
               </button>
             </Link>
-          )} */}
-          
+          ) : (
+            <></>
+          )}
 
-          {user ? (
+          {/* {user ? (
             <div className="dropdown ml-3">
               <a
                 className="btn dropdown-toggle mr-4 text-black"
@@ -158,9 +214,7 @@ const Header = () => {
                 </button>
               </Link>
             )
-          )}
-
-
+          )} */}
         </div>
       </div>
     </div>

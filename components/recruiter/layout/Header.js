@@ -17,14 +17,12 @@ const Header = () => {
     <div className="header">
       <nav className="nav">
         <ul className="nav-items">
-          <Link href="/recruiter">
+          <Link href="/">
             <li className="nav-item">
               <span class="material-icons-outlined"> Home </span>
             </li>
           </Link>
-          <li className="nav-item">
-            <span class="material-icons-outlined">Dashboard</span>
-          </li>
+          
           <Link href='/employer/jobs/'>
             <li className="nav-item">
               <span class="material-icons-outlined"> My Jobs </span>

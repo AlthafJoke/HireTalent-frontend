@@ -18,6 +18,8 @@ export const AuthProvider = ({ children }) => {
   const [send, setSend] = useState(false)
   const [repass, setRePass] = useState(false) 
 
+  const [isLogout, setLogout] = useState(false);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -36,6 +38,7 @@ export const AuthProvider = ({ children }) => {
         password,
       });
       if (res.data.success) {
+        setLogout(false)
         console.log(res.data)
         loadUser();
         setIsAuthenticated(true);
@@ -109,6 +112,7 @@ export const AuthProvider = ({ children }) => {
       const res = await axios.post("/api/auth/logout");
 
       if (res.data.success) {
+        setLogout(true)
         setIsAuthenticated(false);
         setIsRecruiter(false);
         setUser(null);
@@ -305,6 +309,7 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
+        isLogout,
         loading,
         user,
         isAuthenticated,
@@ -330,6 +335,7 @@ export const AuthProvider = ({ children }) => {
         resetPassword,
         repass, 
         setRePass,
+        
       }}
     >
       {children}
