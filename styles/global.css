@@ -158,6 +158,11 @@ h4{
   transition: 0.5s;
 }
 
+.table-action-items{
+  display: flex;
+  align-items: center;
+}
+
 
 
 /* Loader */

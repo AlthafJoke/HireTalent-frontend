@@ -68,9 +68,9 @@ const MyJobs = ({ jobs, access_token }) => {
         salary: job.salary,
         
         action: (
-          <>
+          <div className="table-action-items">
             <Link href={`/job/${job.id}`}>
-              <button className="btn btn-dark btn-sm ">
+              <button className="btn btn-dark btn-sm">
                 <i aria-hidden className="fa fa-eye"></i>
               </button>
             </Link>
@@ -90,7 +90,7 @@ const MyJobs = ({ jobs, access_token }) => {
             </button>
 
 
-          </>
+          </div>
         ),
       });
     });
@@ -112,6 +112,7 @@ const MyJobs = ({ jobs, access_token }) => {
         </>
       </div>
       <div className="col-2"></div>
+      
     </div>
   );
 };
