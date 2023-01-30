@@ -72,10 +72,13 @@ export const AuthProvider = ({ children }) => {
   const loadUser = async () => {
     try {
       setLoading(true);
+      setLogout(true)
+      
 
       const res = await axios.get("/api/auth/user");
 
       if (res.data.user) {
+
         setIsAuthenticated(true);
         setLoading(false);
         setUser(res.data.user);

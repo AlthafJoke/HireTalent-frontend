@@ -5,15 +5,19 @@ import AuthContext from "../../context/AuthContext";
 import { useRouter } from "next/router";
 
 const Header = () => {
-  const { loading, user, logout, isRecruiter, isApproved, isLogout } = useContext(AuthContext);
+  const { loading, user, logout, isRecruiter, isApproved } =
+    useContext(AuthContext);
   const [keyword, setKeyword] = useState("");
   const [location, setLocation] = useState("");
   const router = useRouter();
-
+  const [isLogout, setLogout] = useState(false);
 
   //  console.log(user)
 
- 
+  const logoutHandler = () => {
+    setLogout(true);
+    logout();
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -60,6 +64,10 @@ const Header = () => {
           
 
            } */}
+
+          <button className="btn btn-warning text-white flex items-center justify-center">
+            <span>Upgrade to Premium Plan</span>
+          </button>
           {isRecruiter ? (
             <Link href="/employer/jobs/new">
               <button className="postAJobButton flex items-center justify-center">
@@ -122,7 +130,7 @@ const Header = () => {
                   className="dropdown-menu "
                   aria-labelledby="dropDownMenuButton"
                 >
-                  <Link href="me/applied" className="hover:no-underline">
+                  <Link href="/me/applied" className="hover:no-underline">
                     <button className="dropdown-item hover:bg-blue-100">
                       <span>Jobs Applied</span>
                     </button>
@@ -150,15 +158,14 @@ const Header = () => {
             )
           )}
 
-          {isLogout ? (
+          {!user && (
             <Link href="/login" className="items-center justify-center">
               <button className="loginButtonHeader items-center justify-center">
                 <span className="items-center justify-center">Login</span>
               </button>
             </Link>
-          ) : (
-            <></>
-          )}
+          ) 
+          }
 
           {/* {user ? (
             <div className="dropdown ml-3">
