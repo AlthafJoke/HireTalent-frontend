@@ -1,9 +1,24 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import AuthContext from "../../context/AuthContext";
 import { useRouter } from "next/router";
 import Modal from "../Modal";
+import axios from "axios";
+
+function loadScript(src) {
+	return new Promise((resolve) => {
+		const script = document.createElement('script')
+		script.src = src
+		script.onload = () => {
+			resolve(true)
+		}
+		script.onerror = () => {
+			resolve(false)
+		}
+		document.body.appendChild(script)
+	})
+}
 
 const Header = () => {
   const { loading, user, logout, isRecruiter, isApproved } =
@@ -13,6 +28,79 @@ const Header = () => {
   const router = useRouter();
   const [isLogout, setLogout] = useState(false);
   const [premiumModal, setpremiumModal] = useState(false);
+
+  const [productDetails, setProductDetails] = useState();
+  const [selectedItemAmount, setSelectedItemAmount] = useState();
+
+  useEffect(() => {
+    getProduct();
+  }, []);
+
+  const getProduct = async () => {
+    try {
+      const res = await axios
+        .get(
+          `https://fakestoreapi.com/products/${Math.floor(Math.random() * 10) + 11}`
+        );
+      setProductDetails(res.data);
+      setSelectedItemAmount((res.data.price * 75.61 * 100).toFixed(2));
+    } catch (err) {
+      return console.log(err);
+    }
+  };
+
+  async function displayRazorpay() {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+
+    if (!res) {
+      alert(
+        "Failure loading the Razorpay SDK. PLease make sure you are connected to the internet"
+      );
+      return;
+    }
+
+    const orderData = await axios.post("http://127.0.0.1:8000/api/createOrder/", {
+      amount: 199 * 100,
+    });
+
+    const { amount, currency, order_id } = orderData.data;
+
+    const options = {
+      key: "rzp_test_IUIq9c0XeimSlQ", // Enter the Key ID generated from the Dashboard
+      // amount: amount.toString(),
+      amount:199,
+      currency: currency,
+      name: "Test Company",
+      description: "Test Transaction",
+      
+      order_id: order_id,
+      handler: async function (response) {
+        const razorpay_paymentId = response.razorpay_payment_id;
+        const razorpay_orderId = response.razorpay_order_id;
+        const razorpay_signature = response.razorpay_signature;
+
+        const res = await axios.post("http://127.0.0.1:8000/api/verifySignature/", {
+          razorpay_paymentId,
+          razorpay_orderId,
+          razorpay_signature,
+        });
+
+        alert(res.data.status);
+      },
+      prefill: {
+        name: "John Doe",
+        email: "doejon@example.com",
+        contact: "9999999999",
+      },
+      theme: {
+        color: "#61dafb",
+      },
+    };
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  }
 
   //  console.log(user)
 
@@ -56,15 +144,14 @@ const Header = () => {
           </div>
         </form>
         <div className="btnsWrapper items-center justify-center">
-
-          {user && 
-          <button
-            className="btn btn-warning text-white flex items-center justify-center"
-            onClick={() => setpremiumModal(true)}
-          >
-            <span>Upgrade to Premium Plan</span>
-          </button>}
-          
+          {user && (
+            <button
+              className="btn btn-warning text-white flex items-center justify-center"
+              onClick={() => setpremiumModal(true)}
+            >
+              <span>Upgrade to Premium Plan</span>
+            </button>
+          )}
 
           <Modal
             id="premiumModal"
@@ -73,17 +160,30 @@ const Header = () => {
           >
             <div className="p-3 rounded">
               <div className="premiumLogo flex items-center justify-center">
-                <span><svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" viewBox="0 0 24 24"><path fill="gold" d="M6 2L2 8l10 14L22 8l-4-6H6Z"/></svg></span>
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="3em"
+                    height="3em"
+                    viewBox="0 0 24 24"
+                  >
+                    <path fill="gold" d="M6 2L2 8l10 14L22 8l-4-6H6Z" />
+                  </svg>
+                </span>
               </div>
               <div className="flex justify-center">
                 <h3>Get Premium</h3>
               </div>
               <div className="">
-                <p className="">Do you want to experiance your premium feature experience </p>
+                <p className="">
+                  Do you want to experiance your premium feature experience{" "}
+                </p>
                 <p>@₹199 only</p>
               </div>
               <div className="flex justify-center ">
-                <button className="bg-blue-800 px-4 py-1 rounded hover:bg-blue-900 shadow">Purchase</button>
+                <button className="bg-blue-800 px-4 py-1 rounded hover:bg-blue-900 shadow" onClick={displayRazorpay}>
+                  Purchase
+                </button>
               </div>
             </div>
           </Modal>
