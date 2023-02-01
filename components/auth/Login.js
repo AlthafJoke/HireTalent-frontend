@@ -8,10 +8,14 @@ import Link from "next/link";
 // reactstrap components
 import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
 
-const Login = () => {
+const Login = ({google_id}) => {
+
+  console.log("thisssss", google_id)
   const [modalOpen, setModalOpen] = React.useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  
 
   const {
     loading,
@@ -42,7 +46,7 @@ const Login = () => {
     /* global google */
     google.accounts.id.initialize({
       client_id:
-        "692999485509-co0lqlgdf2vhpvd4jnc06vq6ji263tas.apps.googleusercontent.com",
+        google_id,
       callback: handleCallbackResponse,
     });
 
