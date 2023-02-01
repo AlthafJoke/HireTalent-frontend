@@ -19,13 +19,13 @@ const Header = () => {
         <ul className="nav-items">
           <Link href="/">
             <li className="nav-item">
-              <span class="material-icons-outlined"> Home </span>
+              <span className="material-icons-outlined"> Home </span>
             </li>
           </Link>
           
           <Link href='/employer/jobs/'>
             <li className="nav-item">
-              <span class="material-icons-outlined"> My Jobs </span>
+              <span className="material-icons-outlined"> My Jobs </span>
             </li>
           </Link>
           <Link href="/employer/jobs/new">
@@ -33,9 +33,9 @@ const Header = () => {
           </Link>
         </ul>
 
-        <div className="btn">
+        {/* <div className="btn">
           <button className="btn btn-primary  ">logout</button>
-        </div>
+        </div> */}
       </nav>
 
       {/* <h1 className={style.name}>hello</h1> */}

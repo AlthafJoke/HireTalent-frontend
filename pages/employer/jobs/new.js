@@ -7,6 +7,7 @@ import {isAuthenticatedUser} from "../../../utils/isAuthenticated"
 import AuthContext from "../../../context/AuthContext";
 import { useContext } from "react";
 import StatusVerify from "../../../components/verify/StatusVerify";
+import jwtDecode from "jwt-decode";
 
 export default function NewJobPage({ access_token }) {
   const {isRecruiter, isApproved} = useContext(AuthContext)
@@ -26,12 +27,14 @@ export async function getServerSideProps({ req }) {
 
   const user = await isAuthenticatedUser(access_token);
 
+  const decodeduser = jwtDecode(access_token);
+
   console.log("this is user value: ", user);
 
-  if (!user) {
+  if (!decodeduser.is_recruiter) {
     return {
       redirect: {
-        destination: "/login",
+        destination: "/",
         permanent: false,
       },
     };

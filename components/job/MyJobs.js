@@ -5,32 +5,30 @@ import { useContext } from "react";
 import JobContext from "../../context/JobContext";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
-
-
+import jwtDecode from "jwt-decode";
 
 const MyJobs = ({ jobs, access_token }) => {
-    const { clearErros, error, loading, deleted, deleteJob, setDeleted} = useContext(JobContext)
-    const router = useRouter()
+  const { clearErros, error, loading, deleted, deleteJob, setDeleted } =
+    useContext(JobContext);
+  const router = useRouter();
 
-    useEffect(() => {
-      if (error){
-        toast.error(error)
-        clearErros()
-      }
-      if(deleted) {
-        setDeleted(false)
-        router.push(router.asPath)
-      }
+  const decodeduser = jwtDecode(access_token);
+  console.log(decodeduser)
 
-
-    }) 
-
-    const deleteJobHandler = (id) => {
-      deleteJob(id, access_token)
-
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      clearErros();
     }
+    if (deleted) {
+      setDeleted(false);
+      router.push(router.asPath);
+    }
+  });
 
-
+  const deleteJobHandler = (id) => {
+    deleteJob(id, access_token);
+  };
 
   const columns = [
     {
@@ -48,7 +46,6 @@ const MyJobs = ({ jobs, access_token }) => {
       sortable: true,
       selector: (row) => row.salary,
     },
-   
 
     {
       name: "Action",
@@ -66,7 +63,7 @@ const MyJobs = ({ jobs, access_token }) => {
 
         title: job.title,
         salary: job.salary,
-        
+
         action: (
           <div className="table-action-items">
             {/* <Link href={`/job/${job.id}`}> */}
@@ -86,11 +83,12 @@ const MyJobs = ({ jobs, access_token }) => {
               </button>
             </Link>
 
-            <button  className="btn btn-danger btn-sm my-2 mx-1" onClick={() => deleteJobHandler(job.id)}>
-                <i className="fa fa-trash"></i>
+            <button
+              className="btn btn-danger btn-sm my-2 mx-1"
+              onClick={() => deleteJobHandler(job.id)}
+            >
+              <i className="fa fa-trash"></i>
             </button>
-
-
           </div>
         ),
       });
@@ -104,7 +102,6 @@ const MyJobs = ({ jobs, access_token }) => {
         {/* data is commming from data.push */}
         <>
           <DataTable
-            
             // key={data.id}
             columns={columns}
             data={data}
@@ -113,7 +110,6 @@ const MyJobs = ({ jobs, access_token }) => {
         </>
       </div>
       <div className="col-2"></div>
-      
     </div>
   );
 };

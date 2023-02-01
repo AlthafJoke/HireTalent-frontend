@@ -17,6 +17,7 @@ const LoginApi = async (req, res) =>  {
             })
  
             if (response.data.access){
+                console.log(response.data, "this is response when user login")
                 res.setHeader('Set-Cookie', [
                     cookie.serialize('access', response.data.access, {
                         httpOnly:true,

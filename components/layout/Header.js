@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import AuthContext from "../../context/AuthContext";
 import { useRouter } from "next/router";
+import Modal from "../Modal";
 
 const Header = () => {
   const { loading, user, logout, isRecruiter, isApproved } =
@@ -11,6 +12,7 @@ const Header = () => {
   const [location, setLocation] = useState("");
   const router = useRouter();
   const [isLogout, setLogout] = useState(false);
+  const [premiumModal, setpremiumModal] = useState(false);
 
   //  console.log(user)
 
@@ -36,8 +38,8 @@ const Header = () => {
       <div className="navContainer items-center justify-center">
         <Link href="/">
           <div className="logoWrapper md:w-3/4 lg:w-1/2 xl:w-1/3">
-            <span className="logo1 sm:w-full ">Hire</span>
-            <span className="logo2 sm:w-full ">Talent.com</span>
+            <span className="logo1  text-lg">Hire</span>
+            <span className="logo2  text-lg">Talent.com</span>
           </div>
         </Link>
         <form onSubmit={submitHandler} className="search-bar w-80 text-dark">
@@ -54,20 +56,38 @@ const Header = () => {
           </div>
         </form>
         <div className="btnsWrapper items-center justify-center">
-          {/* { isApproved ?  <Link href="/employer/jobs/new">
-                <button className="postAJobButton flex items-center justify-center">
-                  <span>Post A Job</span>
-                </button>
-              </Link>:<></>
 
-          
-          
-
-           } */}
-
-          <button className="btn btn-warning text-white flex items-center justify-center">
+          {user && 
+          <button
+            className="btn btn-warning text-white flex items-center justify-center"
+            onClick={() => setpremiumModal(true)}
+          >
             <span>Upgrade to Premium Plan</span>
-          </button>
+          </button>}
+          
+
+          <Modal
+            id="premiumModal"
+            closeActive={() => setpremiumModal(false)}
+            active={premiumModal}
+          >
+            <div className="p-3 rounded">
+              <div className="premiumLogo flex items-center justify-center">
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" viewBox="0 0 24 24"><path fill="gold" d="M6 2L2 8l10 14L22 8l-4-6H6Z"/></svg></span>
+              </div>
+              <div className="flex justify-center">
+                <h3>Get Premium</h3>
+              </div>
+              <div className="">
+                <p className="">Do you want to experiance your premium feature experience </p>
+                <p>@₹199 only</p>
+              </div>
+              <div className="flex justify-center ">
+                <button className="bg-blue-800 px-4 py-1 rounded hover:bg-blue-900 shadow">Purchase</button>
+              </div>
+            </div>
+          </Modal>
+
           {isRecruiter ? (
             <Link href="/employer/jobs/new">
               <button className="postAJobButton flex items-center justify-center">
@@ -164,8 +184,7 @@ const Header = () => {
                 <span className="items-center justify-center">Login</span>
               </button>
             </Link>
-          ) 
-          }
+          )}
 
           {/* {user ? (
             <div className="dropdown ml-3">

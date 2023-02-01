@@ -4,12 +4,15 @@ import axios from "axios";
 import Layout from "../../../components/recruiter/layout/Layout";
 import MyJobs from "../../../components/job/MyJobs";
 import { isAuthenticatedUser } from "../../../utils/isAuthenticated";
+import jwtDecode from "jwt-decode";
+
 
 
 
 export default function MyJobPage({ jobs, access_token }) {
   
   return (
+    
     <>
     <Layout title="My Jobs">
       <MyJobs jobs={jobs} access_token={access_token} />
@@ -22,14 +25,19 @@ export async function getServerSideProps({ req }) {
   
   const access_token = req.cookies.access;
 
-  const user = await isAuthenticatedUser(access_token);
+  const usertoken = await isAuthenticatedUser(access_token);
 
-  console.log("this is user value: ", user);
+  const decodeduser = jwtDecode(access_token);
+ 
 
-  if (!user) {
+  
+
+  
+
+  if (!decodeduser.is_recruiter) {
     return {
       redirect: {
-        destination: "/login",
+        destination: "/",
         permanent: false,
       },
     };
@@ -41,7 +49,7 @@ export async function getServerSideProps({ req }) {
         
     }
   })
-  console.log("this is response:", res)
+  
 
   const jobs = res.data
 
@@ -53,6 +61,7 @@ export async function getServerSideProps({ req }) {
     props: {
       access_token,
       jobs,
+     
     },
   };
 }
