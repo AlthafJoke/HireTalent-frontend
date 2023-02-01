@@ -49,6 +49,12 @@ export const AuthProvider = ({ children }) => {
         if (res.data.user.is_recruiter == "True") {
           setIsRecruiter(true);
         }
+        if (res.data.user.is_premium == "True"){
+        
+          setIsPremium(true)
+          
+  
+        }
         router.push("/");
       }
 
@@ -56,12 +62,7 @@ export const AuthProvider = ({ children }) => {
         setIsRecruiter(true);
       } 
 
-      if (res.data.user.is_premium == "True"){
-        
-        setIsPremium(true)
-        
-
-      }
+      
     } catch (error) {
       setLoading(false);
       setError(
@@ -86,17 +87,13 @@ export const AuthProvider = ({ children }) => {
         setCurrentEmail(res.data.user.email);
         // setIsPremium(res.data.is_premium)
         console.log(res.data.user.is_premium)
+        setIsPremium(res.data.user.is_premium)
 
         setIsAuthenticated(true);
         setLoading(false);
         setUser(res.data.user);
       }
-      if (res.data.user.is_premium == "True"){
-        
-        setIsPremium(true)
-        console.log(isPremium)
-
-      }
+      
 
       if (res.data.user.is_recruiter == "True") {
         setIsRecruiter(true);
