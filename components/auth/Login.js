@@ -135,7 +135,7 @@ const Login = () => {
                 </div>
                 <div
                   id="signInDiv"
-                  className="d-flex mt-2 items-center justify-center"
+                  className="flex mt-2 items-center justify-center"
                 ></div>
               </form>
             </div>
