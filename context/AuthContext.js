@@ -15,8 +15,10 @@ export const AuthProvider = ({ children }) => {
 
   const [isRecruiter, setIsRecruiter] = useState(false);
   const [isApproved, setIsApproved] = useState(false);
-  const [send, setSend] = useState(false)
-  const [repass, setRePass] = useState(false) 
+  const [send, setSend] = useState(false);
+  const [repass, setRePass] = useState(false);
+  const [currentEmail, setCurrentEmail] = useState("");
+  const [isPremium, setIsPremium] = useState(false)
 
   const [isLogout, setLogout] = useState(false);
 
@@ -38,27 +40,28 @@ export const AuthProvider = ({ children }) => {
         password,
       });
       if (res.data.success) {
-        setLogout(false)
-        console.log(res.data)
+        setLogout(false);
+        console.log(res.data);
         loadUser();
+        setCurrentEmail(res.data.user.email);
         setIsAuthenticated(true);
         setLoading(false);
-        if(res.data.user.is_recruiter == "True"){
+        if (res.data.user.is_recruiter == "True") {
           setIsRecruiter(true);
         }
         router.push("/");
-
       }
 
-      if(res.data.user.is_recruiter == "True"){
+      if (res.data.user.is_recruiter == "True") {
         setIsRecruiter(true);
+      } 
+
+      if (res.data.user.is_premium == "True"){
+        
+        setIsPremium(true)
+        
+
       }
-      else{
-        setIsRecruiter(false);
-      }
-
-
-
     } catch (error) {
       setLoading(false);
       setError(
@@ -72,28 +75,38 @@ export const AuthProvider = ({ children }) => {
   const loadUser = async () => {
     try {
       setLoading(true);
-      setLogout(true)
-      
+      setLogout(true);
 
       const res = await axios.get("/api/auth/user");
 
+      
+      // console.log(res.data.user.is_premium, "dsfjksdjfksfjskkvkjdfkjefekjfe")
+
       if (res.data.user) {
+        setCurrentEmail(res.data.user.email);
+        // setIsPremium(res.data.is_premium)
+        console.log(res.data.user.is_premium)
 
         setIsAuthenticated(true);
         setLoading(false);
         setUser(res.data.user);
       }
-      
+      if (res.data.user.is_premium == "True"){
+        
+        setIsPremium(true)
+        console.log(isPremium)
 
-      if (res.data.user.is_recruiter == "True"){
+      }
+
+      if (res.data.user.is_recruiter == "True") {
         setIsRecruiter(true);
       }
 
-      if (res.data.user.is_approved == "True"){
+      if (res.data.user.is_approved == "True") {
         setIsApproved(true);
       }
 
-
+      
 
 
     } catch (error) {
@@ -115,7 +128,7 @@ export const AuthProvider = ({ children }) => {
       const res = await axios.post("/api/auth/logout");
 
       if (res.data.success) {
-        setLogout(true)
+        setLogout(true);
         setIsAuthenticated(false);
         setIsRecruiter(false);
         setUser(null);
@@ -169,15 +182,15 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const googleAuth = async ({token}) => {
+  const googleAuth = async ({ token }) => {
     try {
       setLoading(true);
 
-      const res = await axios.post("/api/auth/google",{
+      const res = await axios.post("/api/auth/google", {
         token,
-      } );
+      });
 
-      if (res.status == 200 ) {
+      if (res.status == 200) {
         setIsAuthenticated(true);
         setLoading(false);
         setUser(res.data.user);
@@ -192,8 +205,6 @@ export const AuthProvider = ({ children }) => {
       );
     }
   };
- 
-
 
   // clear errors
   const clearErrors = () => {
@@ -263,51 +274,44 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-
   const resetPasswordRequest = async (email) => {
     setLoading(true);
 
-    try{
-      
-      const response = await axios.post(`${process.env.API_URL}api/forgot-password/`, {email})
+    try {
+      const response = await axios.post(
+        `${process.env.API_URL}api/forgot-password/`,
+        { email }
+      );
 
-      
+      if (response.data) {
+        setLoading(false);
 
-      if(response.data){ 
-        setLoading(false)
-        
-        setSend(true)
-
-
+        setSend(true);
       }
-      
-    }
-    catch(error){
-      
+    } catch (error) {
       setLoading(false);
       setError(
         error.response &&
           (error.response.data.detail || error.response.data.error)
       );
     }
-  }
-
+  };
 
   const resetPassword = async (password, confirmPassword, uid) => {
     setLoading(true);
 
+    const response = await axios.post(
+      `${process.env.API_URL}api/reset-password/`,
+      { password, confirmPassword, uid }
+    );
 
-    const response = await axios.post(`${process.env.API_URL}api/reset-password/`, {password, confirmPassword, uid})
+    if (response.data.success) {
+      setLoading(false);
+      setRePass(true);
 
-    if(response.data.success ){
-      setLoading(false)
-      setRePass(true)
-      
       router.push("/login");
     }
-    
-
-  }
+  };
 
   return (
     <AuthContext.Provider
@@ -336,9 +340,10 @@ export const AuthProvider = ({ children }) => {
         send,
         setSend,
         resetPassword,
-        repass, 
+        repass,
         setRePass,
-        
+        currentEmail,
+        isPremium,
       }}
     >
       {children}

@@ -33,6 +33,11 @@ export const JobProvider = ({ children }) => {
         setLoading(false);
         setApplied(true);
       }
+
+      
+
+
+
     } catch (error) {
       setLoading(false);
       setError(

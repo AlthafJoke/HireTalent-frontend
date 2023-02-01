@@ -19,7 +19,7 @@ export async function getServerSideProps({ req, params }) {
   const user = await isAuthenticatedUser(access_token);
   const decodeduser = jwtDecode(access_token);
 
-  if (!decodeduser.is_recruiter) {
+  if (!user) {
     return {
       redirect: {
         destination: "/",

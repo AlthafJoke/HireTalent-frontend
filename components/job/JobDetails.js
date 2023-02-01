@@ -26,8 +26,8 @@ const JobDetails = ({ job, candidates, access_token }) => {
 
   useEffect(() => {
     if (error) {
-      // toast.error(error);
-      router.push('/upload/resume')
+      toast.error(error);
+      // router.push('/upload/resume')
       clearErrors();
     }
 
