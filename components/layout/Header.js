@@ -5,7 +5,8 @@ import AuthContext from "../../context/AuthContext";
 import { useRouter } from "next/router";
 import Modal from "../Modal";
 import axios from "axios";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import toast, { Toaster } from 'react-hot-toast';
 
 function loadScript(src) {
   return new Promise((resolve) => {
@@ -103,7 +104,9 @@ const Header = () => {
 
         if (res.data.status) {
           setpremiumModal(false);
+
           toast.success(res.data.status);
+          window.location.reload()
         }
 
         // alert(res.data.status);
@@ -142,6 +145,7 @@ const Header = () => {
 
   return (
     <div className="navWrapper items-center justify-center ">
+      <Toaster />
       <div className="navContainer items-center justify-center">
         <Link href="/">
           <div className="logoWrapper md:w-3/4 lg:w-1/2 xl:w-1/3">
