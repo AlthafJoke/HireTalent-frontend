@@ -9,3 +9,19 @@ export default function LoginPage () {
     </Layout>
   );
 }
+
+
+export async function getServerSideProps({ req }) {
+
+  const url = process.env.API_URL
+
+
+  return {
+    props: {
+      url,
+      
+     
+    },
+  };
+
+}
