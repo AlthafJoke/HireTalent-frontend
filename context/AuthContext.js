@@ -155,7 +155,7 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
 
-      const res = await axios.post(`${process.env.API_URL}api/auth/register/`, {
+      const res = await axios.post(`${process.env.NEXT_API_URL}api/auth/register/`, {
         first_name: firstName,
         last_name: lastName,
         email,
@@ -217,7 +217,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(true);
 
       const res = await axios.put(
-        `${process.env.API_URL}api/me/update/`,
+        `${process.env.NEXT_API_URL}api/me/update/`,
         {
           first_name: firstName,
           last_name: lastName,
@@ -250,7 +250,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(true);
 
       const res = await axios.put(
-        `${process.env.API_URL}api/upload/resume/`,
+        `${process.env.NEXT_API_URL}api/upload/resume/`,
         formData,
         {
           headers: {
@@ -276,7 +276,7 @@ export const AuthProvider = ({ children }) => {
 
     try {
       const response = await axios.post(
-        `${process.env.API_URL}api/forgot-password/`,
+        `${process.env.NEXT_API_URL}api/forgot-password/`,
         { email }
       );
 
@@ -298,7 +298,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
 
     const response = await axios.post(
-      `${process.env.API_URL}api/reset-password/`,
+      `${process.env.NEXT_API_URL}api/reset-password/`,
       { password, confirmPassword, uid }
     );
 

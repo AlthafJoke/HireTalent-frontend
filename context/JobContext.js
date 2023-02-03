@@ -20,7 +20,7 @@ export const JobProvider = ({ children }) => {
       setLoading(true);
 
       const res = await axios.post(
-        `${process.env.API_URL}api/job/${id}/apply/`,
+        `${process.env.NEXT_API_URL}api/job/${id}/apply/`,
         {},
 
         {
@@ -53,7 +53,7 @@ export const JobProvider = ({ children }) => {
       setLoading(true);
 
       const res = await axios.get(
-        `${process.env.API_URL}api/job/${id}/check/`,
+        `${process.env.NEXT_API_URL}api/job/${id}/check/`,
 
         {
           headers: {
@@ -99,7 +99,7 @@ export const JobProvider = ({ children }) => {
       setLoading(true);
 
       const res = await axios.post(
-        `${process.env.API_URL}api/job/new-job/`,
+        `${process.env.NEXT_API_URL}api/job/new-job/`,
         data,
 
         {
@@ -127,7 +127,7 @@ export const JobProvider = ({ children }) => {
       setLoading(true);
 
       const res = await axios.put(
-        `${process.env.API_URL}api/job/${id}/update/`,
+        `${process.env.NEXT_API_URL}api/job/${id}/update/`,
         data,
 
         {
@@ -155,7 +155,7 @@ export const JobProvider = ({ children }) => {
       setLoading(true);
 
       const res = await axios.delete(
-        `${process.env.API_URL}api/job/${id}/delete/`,
+        `${process.env.NEXT_API_URL}api/job/${id}/delete/`,
 
         {
           headers: {
