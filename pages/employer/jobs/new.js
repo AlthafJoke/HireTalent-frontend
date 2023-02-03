@@ -40,10 +40,6 @@ export async function getServerSideProps({ req }) {
     };
   }
 
-  
-
-  
-
   return {
     props: {
       access_token,
