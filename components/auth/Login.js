@@ -54,7 +54,7 @@ const Login = ({google_id}) => {
       theme: "outline",
       size: "large",
     });
-  },[]);
+  },[google_id, handleCallbackResponse]);
 
   useEffect(() => {
     if (error) {
@@ -76,7 +76,7 @@ const Login = ({google_id}) => {
     if (isAuthenticated && !loading) {
       Router.push("/");
     }
-  }, [clearErrors, repass, setSuccess]);
+  }, [clearErrors, repass, setSuccess, Router, error, isAuthenticated, loading, setRePass]);
 
   const submitHandler = (e) => {
     e.preventDefault();
