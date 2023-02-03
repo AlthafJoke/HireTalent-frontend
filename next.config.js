@@ -1,10 +1,8 @@
-
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
   env:{
-    API_URL: 'https://hiretalent.codestreak.in/',
+    NEXT_API: 'http://localhost:8000/',
     
   },
 };

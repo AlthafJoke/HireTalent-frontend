@@ -165,6 +165,7 @@ export const AuthProvider = ({ children }) => {
         designation,
       });
       if (res.data.success) {
+        console.log("registered")
         setSuccess(true);
         setUploaded(true);
         setLoading(false);
