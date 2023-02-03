@@ -1,6 +1,7 @@
 import React from "react";
-import { Html, Head, Main  } from "next/document";
-import Script from 'next/script'
+import { Html, Head, Main } from "next/document";
+import Script from "next/script";
+import Script from "next/script";
 
 export default function Document() {
   return (
@@ -15,15 +16,13 @@ export default function Document() {
       </Head>
       <body>
         <Main />
-       
-        
+        <NextScript />
 
         <Script
           src="https://accounts.google.com/gsi/client"
           async
           defer
         ></Script>
-       
       </body>
     </Html>
   );
