@@ -54,7 +54,7 @@ const Login = ({google_id}) => {
       theme: "outline",
       size: "large",
     });
-  });
+  },[]);
 
   useEffect(() => {
     if (error) {
