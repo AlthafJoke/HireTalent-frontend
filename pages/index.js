@@ -33,7 +33,7 @@ export async function getServerSideProps({ query }) {
   const queryStr = `keyword=${keyword}&location=${location}&page=${page}&jobType=${jobType}&education=${education}&experience=${experience}&min_salary=${min_salary}&max_salary=${max_salary}`;
 
   const response = await axios.get(
-    `${process.env.NEXT_API_URL}api/jobs?${queryStr}`
+    `${process.env.API_URL}api/jobs?${queryStr}`
   );
 
   const data = response.data;

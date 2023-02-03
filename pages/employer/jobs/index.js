@@ -43,7 +43,7 @@ export async function getServerSideProps({ req }) {
     };
   }
 
-  const res = await axios.get(`${process.env.NEXT_API_URL}api/me/jobs/`, {
+  const res = await axios.get(`${process.env.API_URL}api/me/jobs/`, {
     headers: {
         Authorization: `Bearer ${access_token}`
         
