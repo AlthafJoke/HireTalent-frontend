@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: false,
   env:{
-    API_URL : 'https://hiretalent.codestreak.in/',
+    API_URL : "http://localhost:8000/",
     
   },
 };

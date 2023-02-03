@@ -69,6 +69,7 @@ const Header = () => {
 
     const orderData = await axios.post(
       "http://127.0.0.1:8000/api/createOrder/",
+      // `${process.env.API_URL}api/verifySignature/`,
       {
         amount: 199 * 100,
       }
