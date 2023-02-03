@@ -76,7 +76,7 @@ const Login = ({google_id}) => {
     if (isAuthenticated && !loading) {
       Router.push("/");
     }
-  }, [clearErrors, repass, setSuccess, Router, error, isAuthenticated, loading, setRePass]);
+  }, [clearErrors, repass, setSuccess, Router, error, isAuthenticated, loading, setRePass, success]);
 
   const submitHandler = (e) => {
     e.preventDefault();
