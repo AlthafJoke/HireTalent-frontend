@@ -179,12 +179,14 @@ export const JobProvider = ({ children }) => {
   // clear errors
   const clearErrors = () => {
     setError(null);
+    setLoading(false)
   };
 
   return (
     <JobContext.Provider
       value={{
         loading,
+        setLoading,
         error,
         updated,
         created,

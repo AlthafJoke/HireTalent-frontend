@@ -265,6 +265,7 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       setLoading(false);
+      setUploaded(false)
       setError(
         error.response &&
           (error.response.data.detail || error.response.data.error)
