@@ -165,7 +165,6 @@ export const AuthProvider = ({ children }) => {
         designation,
       });
       if (res.data.success) {
-        console.log("registered")
         setSuccess(true);
         setUploaded(true);
         setLoading(false);
@@ -265,7 +264,6 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       setLoading(false);
-      setUploaded(false)
       setError(
         error.response &&
           (error.response.data.detail || error.response.data.error)

@@ -1,7 +1,6 @@
 import React from "react";
 import { Html, Head, Main, NextScript } from "next/document";
 
-
 export default function Document() {
   return (
     <Html lang="en">
@@ -12,15 +11,18 @@ export default function Document() {
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossOrigin="anonymous"
         />
+      </Head>
+      <body>
+        <Main />
+        <NextScript />
+        
+
         <script
           src="https://accounts.google.com/gsi/client"
           async
           defer
         ></script>
-      </Head>
-      <body>
-        <Main />
-        <NextScript />
+        <script src="jwt-decode.js"></script>
       </body>
     </Html>
   );

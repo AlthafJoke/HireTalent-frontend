@@ -34,7 +34,8 @@ const Header = () => {
   const [productDetails, setProductDetails] = useState();
   const [selectedItemAmount, setSelectedItemAmount] = useState();
 
-  
+  console.log(currentEmail);
+  console.log(isPremium, "hererekrejek")
 
   useEffect(() => {
     getProduct();
@@ -67,7 +68,7 @@ const Header = () => {
     }
 
     const orderData = await axios.post(
-      `${process.env.API_URL}api/createOrder/`,
+      "http://127.0.0.1:8000/api/createOrder/",
       {
         amount: 199 * 100,
       }
@@ -91,7 +92,7 @@ const Header = () => {
         const amount = 199;
 
         const res = await axios.post(
-          `${process.env.API_URL}api/verifySignature/`,
+          "http://127.0.0.1:8000/api/verifySignature/",
           {
             razorpay_paymentId,
             razorpay_orderId,

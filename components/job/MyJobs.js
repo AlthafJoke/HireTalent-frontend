@@ -12,15 +12,14 @@ const MyJobs = ({ jobs, access_token }) => {
     useContext(JobContext);
   const router = useRouter();
 
-  
+  const decodeduser = jwtDecode(access_token);
+  console.log(decodeduser)
 
   useEffect(() => {
     if (error) {
       toast.error(error);
       clearErros();
     }
-
-
     if (deleted) {
       setDeleted(false);
       router.push(router.asPath);

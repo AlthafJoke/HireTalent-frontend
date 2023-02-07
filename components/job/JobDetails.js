@@ -1,10 +1,9 @@
 import moment from "moment";
 import React, { useEffect, useContext, useState } from "react";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 import AuthContext from "../../context/AuthContext";
 import JobContext from "../../context/JobContext";
 import { useRouter } from "next/router";
-import toast, { Toaster } from 'react-hot-toast';
 
 const JobDetails = ({ job, candidates, access_token }) => {
   const { isRecruiter} = useContext(AuthContext)
@@ -16,34 +15,29 @@ const JobDetails = ({ job, candidates, access_token }) => {
     error,
     loading,
     checkJobApplied,
-    setLoading,
     
   } = useContext(JobContext);
 
- 
+  console.log(isRecruiter,"test")
+
+  
+
+  
 
   useEffect(() => {
     if (error) {
-   
+      toast.error(error);
+      // router.push('/upload/resume')
       clearErrors();
     }
 
     checkJobApplied(job.id, access_token);
-  }, [clearErrors, access_token, job.id]);
+  }, [error]);
 
   const applyToJobHandler = () => {
-    if(error){
-      setLoading(false)
-      toast.error("login to apply for job");
-      
-
-    }
-    else{
-
-      applyToJob(job.id, access_token);
-    }
     
     
+    applyToJob(job.id, access_token);
   };
 
   const d1 = moment(job.lastDate);
