@@ -67,7 +67,7 @@ const Header = () => {
     }
 
     const orderData = await axios.post(
-      `${process.env.API_URL}api/createOrder/`,
+      'https://hiretalent.codestreak.in/api/createOrder/',
       {
         amount: 199 * 100,
       }

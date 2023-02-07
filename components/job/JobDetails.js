@@ -22,18 +22,14 @@ const JobDetails = ({ job, candidates, access_token }) => {
 
  
 
-  
-
-  
-
   useEffect(() => {
     if (error) {
    
+      clearErrors();
     }
-    clearErrors();
 
     checkJobApplied(job.id, access_token);
-  }, [clearErrors]);
+  }, [clearErrors, access_token, job.id]);
 
   const applyToJobHandler = () => {
     if(error){
