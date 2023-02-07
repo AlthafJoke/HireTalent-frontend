@@ -91,7 +91,7 @@ const Header = () => {
         const amount = 199;
 
         const res = await axios.post(
-          `${process.env.API_URL}api/verifySignature/`,
+          'https://hiretalent.codestreak.in/api/verifySignature/',
           {
             razorpay_paymentId,
             razorpay_orderId,
