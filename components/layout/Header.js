@@ -67,7 +67,7 @@ const Header = () => {
     }
 
     const orderData = await axios.post(
-      'https://hiretalent.codestreak.in/api/createOrder/',
+      `${process.env.API_URL}api/createOrder/`,
       {
         amount: 199 * 100,
       }
@@ -91,7 +91,7 @@ const Header = () => {
         const amount = 199;
 
         const res = await axios.post(
-          'https://hiretalent.codestreak.in/api/verifySignature/',
+          `${process.env.API_URL}api/verifySignature/`,
           {
             razorpay_paymentId,
             razorpay_orderId,
