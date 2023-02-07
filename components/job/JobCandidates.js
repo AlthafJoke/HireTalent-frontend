@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Link from "next/link";
 import DataTable from "react-data-table-component";
+import JobContext from "../../context/JobContext";
+import toast, { Toaster } from 'react-hot-toast';
 
-const JobCandidates = ({ candidatesApplied }) => {
+
+
+const JobCandidates = ({ candidatesApplied , access_token}) => {
+  const {approveCandidate, rejectCandidate} = useContext(JobContext)
+
+
+
+  
   
 //   const tableCustomStyles = {
 //     headCells: {
@@ -16,6 +25,8 @@ const JobCandidates = ({ candidatesApplied }) => {
 //       },
 //     },
 //   };
+
+
 
   const columns = [
     {
@@ -39,11 +50,27 @@ const JobCandidates = ({ candidatesApplied }) => {
       sortable: true,
       selector: (row) => row.appliedAt,
     },
+    {
+      name: "Status",
+      sortable: false,
+      selector: (row) => row.status
+      
+    },
+    {
+      name: "Actions",
+      sortable: false,
+      selector: (row) => row.actions,
+      
+
+
+    }
   ];
 
   const data = []; //
   candidatesApplied &&
     candidatesApplied.forEach((item) => {
+      const stat = item.status
+      
       // here data.push is inserting data into data array
       data.push({
         id: item.job.id,
@@ -70,12 +97,25 @@ const JobCandidates = ({ candidatesApplied }) => {
             </Link>
           </>
         ),
-        appliedAt : item.appliedAt.substring(0, 10)
+        appliedAt : item.appliedAt.substring(0, 10),
+        status : (<>{item.status}</>),
+          
+        actions: (
+          <>
+          <span className="">
+          <button className="bg-green-600 rounded px-2 py-1 text-white" onClick={() => approveCandidate(item.id, access_token)}>approve</button>
+          </span>
+          <span className="ml-2">
+          <button className="bg-red-500 rounded px-2 py-1 text-white" onClick={() => rejectCandidate(item.id, access_token)}>reject</button>
+          </span>
+          </>
+        )
       });
     });
 
   return (
     <div className="row">
+      <Toaster />
       <div className="col-2"></div>
       <div className="col-8 mt-5 text-center ">
         <h1 className=" text-xl font-semi-bold bg-white p-3">{candidatesApplied && `${candidatesApplied.length} Candidates applied for this job`}</h1>

@@ -1,8 +1,10 @@
 import axios from "axios";
+import { useRouter } from "next/router";
 
 import { useState, createContext } from "react";
 
 const JobContext = createContext();
+
 
 export const JobProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
@@ -12,7 +14,10 @@ export const JobProvider = ({ children }) => {
   const [applied, setApplied] = useState(false);
   const [stats, setStats] = useState(false);
   const [created, setCreated] = useState(false);
-  const [deleted, setDeleted] = useState(false)
+  const [deleted, setDeleted] = useState(false);
+
+  const router = useRouter();
+  
 
   //Apply to job
   const applyToJob = async (id, access_token) => {
@@ -176,6 +181,69 @@ export const JobProvider = ({ children }) => {
     }
   };
 
+  const approveCandidate = async (id, access_token) => {
+    try{
+      setLoading(true)
+
+      const res = await axios.post(`${process.env.API_URL}api/candidate/${id}/approve/`,
+      {},
+
+      {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      }
+      
+      )
+      if (res.data.success){
+        setLoading(false)
+        
+        router.reload()
+
+        // window.location.reload()
+      }
+    }
+    catch(error){
+      setLoading(false)
+      setError(
+        error.response &&
+          (error.response.data.detail || error.response.data.error)
+      );
+
+    }
+  }
+
+  const rejectCandidate = async (id, access_token) => {
+    try{
+      setLoading(true)
+
+      const res = await axios.post(`${process.env.API_URL}api/candidate/${id}/reject/`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      }
+      
+      )
+      if (res.data.success){
+        // window.location.reload()
+        router.reload()
+        setLoading(false)
+        
+      }
+
+    }
+    catch(error){
+      setLoading(false)
+      setError(
+        error.response &&
+          (error.response.data.detail || error.response.data.error)
+      );
+
+    }
+  }
+
   // clear errors
   const clearErrors = () => {
     setError(null);
@@ -201,7 +269,10 @@ export const JobProvider = ({ children }) => {
         updateJob,
         setLoading,
         deleteJob,
-        setDeleted
+        setDeleted,
+        approveCandidate,
+        rejectCandidate,
+        
       }}
     >
       {children}

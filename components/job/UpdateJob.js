@@ -49,7 +49,7 @@ const UpdateJob = ({ job, access_token }) => {
     }
 
     if (updated) {
-      console.log("ejfjsdsdjfkdjf");
+      
       setUpdated(false);
       router.push("/employer/jobs");
 
@@ -61,6 +61,7 @@ const UpdateJob = ({ job, access_token }) => {
       setPositions("");
       setCompany("");
     }
+    toast.success("successfully updated")
   }, [job, error, updated, clearErrors, setUpdated, router]);
 
   const submitHandler = (e) => {

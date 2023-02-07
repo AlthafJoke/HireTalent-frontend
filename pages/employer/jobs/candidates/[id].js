@@ -4,11 +4,11 @@ import axios from "axios";
 import JobCandidates from "../../../../components/job/JobCandidates";
 import { isAuthenticatedUser } from "../../../../utils/isAuthenticated";
 
-export default function JobCandidatesPage({ candidatesApplied, error }) {
+export default function JobCandidatesPage({ candidatesApplied, access_token }) {
   return (
     <>
       <Layout title="Job candidates">
-        <JobCandidates candidatesApplied={candidatesApplied} />
+        <JobCandidates candidatesApplied={candidatesApplied} access_token={access_token}/>
       </Layout>
     </>
   );
@@ -40,6 +40,7 @@ export async function getServerSideProps({ req, params }) {
     return {
       props: {
         candidatesApplied,
+        access_token,
       },
     };
   } catch (error) {

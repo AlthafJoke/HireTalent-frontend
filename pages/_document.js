@@ -22,7 +22,7 @@ export default function Document() {
           async
           defer
         ></script>
-        <script src="jwt-decode.js"></script>
+        
       </body>
     </Html>
   );
