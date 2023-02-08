@@ -32,7 +32,7 @@ const JobDetails = ({ job, candidates, access_token }) => {
     }
 
     checkJobApplied(job.id, access_token);
-  }, [error]);
+  }, [error, access_token, clearErrors, job.id, checkJobApplied]);
 
   const applyToJobHandler = () => {
     
