@@ -239,7 +239,7 @@ const Header = () => {
                 className="dropdown-menu "
                 aria-labelledby="dropDownMenuButton"
               >
-                <Link href="/recruiter" className="hover:no-underline">
+                <Link href="/employer/jobs" className="hover:no-underline">
                   <button className="dropdown-item hover:bg-blue-100">
                     <span>Dashboard</span>
                   </button>

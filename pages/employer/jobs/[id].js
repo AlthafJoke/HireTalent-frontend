@@ -2,6 +2,7 @@ import Layout from "../../../components/recruiter/layout/Layout";
 import axios from "axios";
 import UpdateJob from "../../../components/job/UpdateJob";
 import { isAuthenticatedUser } from "../../../utils/isAuthenticated";
+import jwtDecode from "jwt-decode";
 
 export default function UpdateJobPage({ job, access_token }) {
   return (

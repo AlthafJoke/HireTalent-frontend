@@ -28,7 +28,12 @@ const Header = () => {
               <span className="material-icons-outlined"> My Jobs </span>
             </li>
           </Link>
-          <Link href="/employer/jobs/new">
+          <Link href='/employer/approvedcandidates/'>
+            <li className="nav-item">
+              <span className="material-icons-outlined">Approved candidates</span>
+            </li>
+          </Link>
+          <Link href="/employer/jobs/new/">
             <div className="btn btn-primary btn">post job</div>
           </Link>
         </ul>
