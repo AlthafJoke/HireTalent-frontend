@@ -14,7 +14,7 @@ const UpdateJob = ({ job, access_token }) => {
   const [description, setDescription] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
-  const [jobType, setJobType] = useState("Permenent");
+  const [jobType, setJobType] = useState("Permanent");
   const [education, setEducation] = useState("Bachelors");
   const [industry, setIndustry] = useState("Business");
   const [experience, setExperience] = useState("No Experience");

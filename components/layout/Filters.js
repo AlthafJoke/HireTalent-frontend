@@ -99,12 +99,12 @@ const Filters = () => {
             type="checkbox"
             name="jobType"
             id="check1"
-            value="Permenent"
-            defaultChecked={checkHandler("jobType", "Permenent")}
+            value="Permanent"
+            defaultChecked={checkHandler("jobType", "Permanent")}
             onClick={(e) => handleClick(e.target)}
           />
           <label className="form-check-label" htmlFor="check1 ">
-            Permenent
+          Permanent
           </label>
         </div>
 
