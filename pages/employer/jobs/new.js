@@ -15,7 +15,7 @@ export default function NewJobPage({ access_token }) {
   return (
     <>
     <Layout title="Post a new job">
-      {isRecruiter && isApproved? <NewJob access_token={access_token} />:<StatusVerify/>}
+      {isRecruiter? <NewJob access_token={access_token} />:<StatusVerify/>}
     </Layout>
     </>
   );
