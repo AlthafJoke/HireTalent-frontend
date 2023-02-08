@@ -13,11 +13,14 @@ export default function ApprovedPage({approved}) {
 }
 
 export async function getServerSideProps({req}) {
+  const access_token = req.cookies.access;
   
 
- 
-
   const response = await axios.get(`${process.env.API_URL}api/approved-candidates/`, {
+    headers: {
+      Authorization: `Bearer ${access_token}`
+      
+  }
   
   })
 

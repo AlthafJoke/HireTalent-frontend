@@ -18,7 +18,7 @@ const Filters = () => {
   function handleClick(checkbox) {
     if (typeof window !== "undefined") {
       const checkboxes = document.getElementsByName(checkbox.name);
-      console.log(checkboxes);
+      
 
       checkboxes.forEach((item) => {
         if (item !== checkbox) {
@@ -62,15 +62,34 @@ const Filters = () => {
 
   return (
     <div className="sidebar mt-5 bg-white p-3 transition-all">
-      <h3 className="flex justify-center text-xl items-center font-bold " onClick={() => setFiterDropDown(prev => !prev )}>
+      <h3
+        className="flex justify-center text-xl items-center font-bold "
+        onClick={() => setFiterDropDown((prev) => !prev)}
+      >
         Filters
-        <span className={classNames( !fiterDropDown? "" : "-rotate-180" , 'lg:hidden ' )}><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="m11.3 14.3l-2.6-2.6q-.475-.475-.212-1.087Q8.75 10 9.425 10h5.15q.675 0 .937.613q.263.612-.212 1.087l-2.6 2.6q-.15.15-.325.225q-.175.075-.375.075t-.375-.075q-.175-.075-.325-.225Z"/></svg></span>
+        <span
+          className={classNames(
+            !fiterDropDown ? "" : "-rotate-180",
+            "lg:hidden "
+          )}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1.5em"
+            height="1.5em"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="m11.3 14.3l-2.6-2.6q-.475-.475-.212-1.087Q8.75 10 9.425 10h5.15q.675 0 .937.613q.263.612-.212 1.087l-2.6 2.6q-.15.15-.325.225q-.175.075-.375.075t-.375-.075q-.175-.075-.325-.225Z"
+            />
+          </svg>
+        </span>
       </h3>
-      
 
-
-
-      <div className={classNames( fiterDropDown? 'block' :  'hidden','lg:block  ')} >
+      <div
+        className={classNames(fiterDropDown ? "block" : "hidden", "lg:block  ")}
+      >
         <hr />
         <h5 className="filter-heading mb-2 mt-2 font-semibold ">Job Type</h5>
 
@@ -85,7 +104,7 @@ const Filters = () => {
             onClick={(e) => handleClick(e.target)}
           />
           <label className="form-check-label" htmlFor="check1 ">
-            Permanent
+            Permenent
           </label>
         </div>
 
