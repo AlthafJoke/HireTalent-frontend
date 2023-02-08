@@ -5,17 +5,15 @@ import jwt_decode from "jwt-decode";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Link from "next/link";
+
 // reactstrap components
 import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
 
-const Login = ({google_id}) => {
-
-  console.log("thisssss", google_id)
+const Login = ({ google_id }) => {
+  console.log("thisssss", google_id);
   const [modalOpen, setModalOpen] = React.useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  
 
   const {
     loading,
@@ -45,8 +43,7 @@ const Login = ({google_id}) => {
   useEffect(() => {
     /* global google */
     google.accounts.id.initialize({
-      client_id:
-        google_id,
+      client_id: google_id,
       callback: handleCallbackResponse,
     });
 
@@ -54,7 +51,7 @@ const Login = ({google_id}) => {
       theme: "outline",
       size: "large",
     });
-  },[]);
+  }, []);
 
   useEffect(() => {
     if (error) {
@@ -66,11 +63,9 @@ const Login = ({google_id}) => {
       toast.success("Registration completed successfully");
       setSuccess(false);
     }
-    if(repass){
+    if (repass) {
       toast.success("Password changed successfully");
-      setRePass(false)
-
-
+      setRePass(false);
     }
 
     if (isAuthenticated && !loading) {
@@ -117,7 +112,7 @@ const Login = ({google_id}) => {
                       required
                     />
                   </div>
-                  <Link href='reset_password-request'>
+                  <Link href="reset_password-request">
                     <p className="mx-4" style={{ color: "grey" }}>
                       Forgot Password ?
                     </p>
@@ -128,24 +123,27 @@ const Login = ({google_id}) => {
                     {loading ? "Authenticating.." : "Login"}
                   </button>
                 </div>
-                <div style={{ textDecoration: "none" }} className="signup">
-                  <p style={{ color: "grey" }}>Not having account?</p>
-                  <button
-                    className="mx-2 text-primary pointer"
-                    onClick={() => setModalOpen(!modalOpen)}
-                  >
-                    Register
-                  </button>
-                </div>
+
                 <div
                   id="signInDiv"
                   className="flex mt-2 items-center justify-center"
                 ></div>
               </form>
+              <div style={{ textDecoration: "none" }} className="signup">
+                <p style={{ color: "grey" }}>Not having account?</p>
+              </div>
+              <button
+                className="mx-2 text-primary pointer"
+                onClick={() => setModalOpen(!modalOpen)}
+              >
+                Register
+              </button>
             </div>
           </div>
         </div>
       </div>
+
+      
       {modalOpen && (
         <Modal toggle={() => setModalOpen(!modalOpen)} isOpen={modalOpen}>
           <div className=" modal-header">
