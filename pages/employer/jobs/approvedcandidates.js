@@ -1,58 +1,59 @@
+import ApprovedCandidates from "../../../components/recruiter/ApprovedCandidates";
 
 
-export default function ApprovedCandidates() {
+export default function ApprovedCandidatesPage({approved}) {
   
   return (
     
     <>
-    {/* <Layout title="Approved"> */}
-      <ApprovedCandidates  />
-    {/* </Layout> */}
+    <Layout title="Approved">
+      <ApprovedCandidates  approved={approved}/>
+    </Layout>
     </>
   );
 }
 
-// export async function getServerSideProps({ req }) {
+export async function getServerSideProps({ req }) {
   
-//   const access_token = req.cookies.access;
+  const access_token = req.cookies.access;
 
-//   const usertoken = await isAuthenticatedUser(access_token);
+  const usertoken = await isAuthenticatedUser(access_token);
 
-//   const decodeduser = jwtDecode(access_token);
+  const decodeduser = jwtDecode(access_token);
  
 
   
 
   
 
-//   if (!decodeduser.is_recruiter) {
-//     return {
-//       redirect: {
-//         destination: "/",
-//         permanent: false,
-//       },
-//     };
-//   }
+  if (!decodeduser.is_recruiter) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 
-//   const res = await axios.get(`${process.env.API_URL}api/me/jobs/`, {
-//     headers: {
-//         Authorization: `Bearer ${access_token}`
+  const res = await axios.get(`${process.env.API_URL}api/approved-candidates/`, {
+    headers: {
+        Authorization: `Bearer ${access_token}`
         
-//     }
-//   })
+    }
+  })
   
 
-//   const jobs = res.data
+  const approved = res.data
 
   
 
   
 
-//   return {
-//     props: {
-//       access_token,
-//       jobs,
+  return {
+    props: {
+      access_token,
+      approved,
      
-//     },
-//   };
-// }
+    },
+  };
+}
