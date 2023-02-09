@@ -39,6 +39,6 @@ export async function getServerSideProps({ req, params }) {
       },
     };
   } catch (error) {
-  
+    console.log(error);
   }
 }

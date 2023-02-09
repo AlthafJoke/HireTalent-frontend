@@ -8,7 +8,7 @@ const ResetPassword = ({data}) => {
     const {resetPassword, loading} = useContext(AuthContext)
     
 
-   
+    console.log(data, "this is data")
 
 
     const handleSubmit = (e) => {

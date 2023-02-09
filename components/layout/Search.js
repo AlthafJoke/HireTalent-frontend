@@ -9,7 +9,7 @@ const Search = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault()
-  
+    console.log(keyword, location)
     if (keyword){
         let searchQuery = `/?keyword=${keyword}`;
 

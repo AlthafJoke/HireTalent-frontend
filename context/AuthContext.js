@@ -22,8 +22,6 @@ export const AuthProvider = ({ children }) => {
 
   const [isLogout, setLogout] = useState(false);
 
-  
-
   const router = useRouter();
 
   useEffect(() => {
@@ -42,9 +40,8 @@ export const AuthProvider = ({ children }) => {
         password,
       });
       if (res.data.success) {
-        
         setLogout(false);
-        
+        console.log(res.data);
         loadUser();
         setCurrentEmail(res.data.user.email);
         setIsAuthenticated(true);
@@ -58,11 +55,6 @@ export const AuthProvider = ({ children }) => {
           
   
         }
-
-
-        
-        
-        
         router.push("/");
       }
 
@@ -89,15 +81,12 @@ export const AuthProvider = ({ children }) => {
       const res = await axios.get("/api/auth/user");
 
       
-      
+      // console.log(res.data.user.is_premium, "dsfjksdjfksfjskkvkjdfkjefekjfe")
 
       if (res.data.user) {
-        
-       
-
         setCurrentEmail(res.data.user.email);
         // setIsPremium(res.data.is_premium)
-        
+        console.log(res.data.user.is_premium)
         setIsPremium(res.data.user.is_premium)
 
         setIsAuthenticated(true);
@@ -113,8 +102,6 @@ export const AuthProvider = ({ children }) => {
       if (res.data.user.is_approved == "True") {
         setIsApproved(true);
       }
-
-      
 
       
 

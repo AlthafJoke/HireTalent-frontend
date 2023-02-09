@@ -62,7 +62,7 @@ const NewJob = ({ access_token }) => {
       company,
     };
 
-
+    console.log(data,);
 
     newJob(data, access_token) 
   };

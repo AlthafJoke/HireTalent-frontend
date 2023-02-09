@@ -18,7 +18,7 @@ const JobDetails = ({ job, candidates, access_token }) => {
     
   } = useContext(JobContext);
 
-
+  console.log(isRecruiter,"test")
 
   
 
@@ -32,7 +32,7 @@ const JobDetails = ({ job, candidates, access_token }) => {
     }
 
     checkJobApplied(job.id, access_token);
-  }, [error, access_token, checkJobApplied, clearErrors, job.id]);
+  }, [error, access_token, clearErrors, job.id, checkJobApplied]);
 
   const applyToJobHandler = () => {
     

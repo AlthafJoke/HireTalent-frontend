@@ -5,7 +5,7 @@ import { isAuthenticatedUser } from "../../utils/isAuthenticated";
 import axios from "axios";
 
 export default function JobsAppliedPage({ jobs }) {
-
+  console.log(jobs)
   return (
     <>
     <Layout title="Update User Profile ">
@@ -21,7 +21,7 @@ export async function getServerSideProps({ req }) {
 
   const user = await isAuthenticatedUser(access_token);
 
-
+  console.log("this is user value: ", user);
 
   if (!user) {
     return {

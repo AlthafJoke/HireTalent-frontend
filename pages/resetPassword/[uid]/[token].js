@@ -20,7 +20,7 @@ export async function getServerSideProps({ req, params }) {
     })
   
     const data = res.data
- 
+    console.log(res, "this is data")
 
     
     

@@ -11,7 +11,8 @@ export default function JobDetailsPage( {job, candidates, access_token } ) {
  
  
 
-
+  console.log("job is: ",job )
+  console.log("candidates are:" , candidates)
   
 
   return (

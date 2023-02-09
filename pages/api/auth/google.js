@@ -8,7 +8,7 @@ const GoogleApi = async (req, res) => {
 
     try {
       const response = await axios.post(
-        `${process.env.API_URL}api/google-auth/`,
+        `${ process.env.API_URL }api/google-auth/`,
         {
           token,
         },
@@ -21,7 +21,7 @@ const GoogleApi = async (req, res) => {
       );
 
       if (response.data.access){
-       
+        console.log(response.data.access)
         res.setHeader('Set-Cookie', [
             cookie.serialize('access', response.data.access, {
                 httpOnly:true,
@@ -38,14 +38,14 @@ const GoogleApi = async (req, res) => {
           success: true,
         });
       } else {
-       
+        console.log("else is working")
         res.status(response.status).json({
           error: "Authentication Failed",
         });
       }
     } catch (error) {
-     
-   
+      console.log("catch is working")
+      console.log(error.response);
       res.status(error.response.status).json({
         error: error.response && error.response.data.error,
       });
