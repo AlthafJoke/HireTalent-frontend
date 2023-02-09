@@ -13,7 +13,7 @@ const MyJobs = ({ jobs, access_token }) => {
   const router = useRouter();
 
   const decodeduser = jwtDecode(access_token);
-  console.log(decodeduser)
+
 
   useEffect(() => {
     if (error) {

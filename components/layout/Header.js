@@ -34,8 +34,8 @@ const Header = () => {
   const [productDetails, setProductDetails] = useState();
   const [selectedItemAmount, setSelectedItemAmount] = useState();
 
-  console.log(currentEmail);
-  console.log(isPremium, "hererekrejek")
+
+
 
   useEffect(() => {
     getProduct();
@@ -51,7 +51,7 @@ const Header = () => {
       setProductDetails(res.data);
       setSelectedItemAmount((res.data.price * 75.61 * 100).toFixed(2));
     } catch (err) {
-      return console.log(err);
+
     }
   };
 
@@ -124,7 +124,7 @@ const Header = () => {
     paymentObject.open();
   }
 
-  //  console.log(user)
+
 
   const logoutHandler = () => {
     setLogout(true);
@@ -172,7 +172,7 @@ const Header = () => {
               className="btn btn-warning text-white flex items-center justify-center"
               onClick={() => setpremiumModal(true)}
             >
-              <span>Upgrade to Premium Plan</span>
+              <span>Upgrade to Premium</span>
             </button>
           ):""}
 

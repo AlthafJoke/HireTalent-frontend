@@ -13,7 +13,6 @@ const Filters = () => {
     queryPrams.set("page", 1);
   }
 
-  console.log(queryPrams);
 
   function handleClick(checkbox) {
     if (typeof window !== "undefined") {

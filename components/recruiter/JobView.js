@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import Link from "next/link";
 
 const JobView = ({ job, candidates, access_token }) => {
-  console.log(job);
+
   return (
     <div className="flex justify-content-center">
       <Card sx={{ maxWidth: 650, minHeight: 400 }}>

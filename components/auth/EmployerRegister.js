@@ -38,7 +38,7 @@ const EmployerRegister = () => {
         e.preventDefault();
         
         register({ firstName, lastName, email, password, confirm_password, company, designation });
-        console.log(register, 'this is register')
+       
     };
 
   return (

@@ -18,7 +18,7 @@ const JobDetails = ({ job, candidates, access_token }) => {
     
   } = useContext(JobContext);
 
-  console.log(isRecruiter,"test")
+
 
   
 

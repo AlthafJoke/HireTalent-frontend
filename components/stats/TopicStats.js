@@ -20,7 +20,7 @@ const TopicStats = () => {
 
     getTopicStats(topic)
 
-    console.log(topic);
+    
   };
   return (
     <div className="modalMask">

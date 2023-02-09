@@ -11,7 +11,7 @@ const allowedParams = [
 ];
 
 export function middleware(req) {
-  console.log('hello')
+  
   
   const url = req.nextUrl;
   let changed = false;

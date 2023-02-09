@@ -29,7 +29,7 @@ export async function getServerSideProps({ req }) {
 
   const decodeduser = jwtDecode(access_token);
 
-  console.log("this is user value: ", user);
+
 
   if (!decodeduser.is_recruiter) {
     return {

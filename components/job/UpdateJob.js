@@ -26,7 +26,7 @@ const UpdateJob = ({ job, access_token }) => {
 
   const { clearErrors, error, loading, updateJob, updated, setUpdated } =
     useContext(JobContext);
-  console.log(updated);
+
 
   useEffect(() => {
     if (job) {

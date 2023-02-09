@@ -19,7 +19,7 @@ export async function getServerSideProps({ req }) {
 
   const user = await isAuthenticatedUser(access_token);
 
-  console.log("this is user value: ", user);
+
 
   if (!user) {
     return {

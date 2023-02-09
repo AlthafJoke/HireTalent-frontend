@@ -44,8 +44,7 @@ const LoginApi = async (req, res) =>  {
             }
 
         }catch(error){
-            
-            console.log(error.response)
+        
             res.status(error.response.status).json({
                 error: error.response && error.response.data.error
             })
