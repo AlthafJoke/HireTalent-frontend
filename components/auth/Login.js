@@ -51,7 +51,7 @@ const Login = ({ google_id }) => {
       theme: "outline",
       size: "large",
     });
-  }, [google_id, handleCallbackResponse]);
+  }, [google_id]);
 
   useEffect(() => {
     if (error) {
