@@ -25,16 +25,21 @@ const JobDetails = ({ job, candidates, access_token }) => {
   
 
   useEffect(() => {
-    if (error) {
-      toast.error(error);
-      // router.push('/upload/resume')
-      clearErrors();
-    }
+    // if (error) {
+    //   toast.error(error);
+    //   // router.push('/upload/resume')
+    //   clearErrors();
+    // }
 
     checkJobApplied(job.id, access_token);
-  }, [error, access_token, clearErrors, job.id, checkJobApplied]);
+  }, []);
 
   const applyToJobHandler = () => {
+    if (error) {
+      toast.error(error);
+    
+      clearErrors();
+    }
     
     
     applyToJob(job.id, access_token);

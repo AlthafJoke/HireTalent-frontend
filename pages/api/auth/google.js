@@ -8,7 +8,7 @@ const GoogleApi = async (req, res) => {
 
     try {
       const response = await axios.post(
-        `${ process.env.API_URL }api/google-auth/`,
+        `${process.env.API_URL}api/google-auth/`,
         {
           token,
         },

@@ -32,7 +32,7 @@ const Login = ({ google_id }) => {
   const [user, setUser] = useState();
 
   function handleCallbackResponse(response) {
-    console.log("Encoded jwt id token :", response.credential);
+    
     var userObject = jwt_decode(response.credential);
     var token = response.credential;
 
@@ -51,7 +51,7 @@ const Login = ({ google_id }) => {
       theme: "outline",
       size: "large",
     });
-  }, [google_id]);
+  }, []);
 
   useEffect(() => {
     if (error) {
@@ -71,7 +71,7 @@ const Login = ({ google_id }) => {
     if (isAuthenticated && !loading) {
       Router.push("/");
     }
-  }, [clearErrors, repass, setSuccess, Router, isAuthenticated, loading, setRePass, success, error]);
+  }, [clearErrors, repass, setSuccess]);
 
   const submitHandler = (e) => {
     e.preventDefault();
