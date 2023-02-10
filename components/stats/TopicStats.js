@@ -67,10 +67,7 @@ const TopicStats = () => {
                 <h4 className="font-bold">Stats of {topic.toUpperCase()}:</h4>
                 <table className="table table-striped mt-4">
                   <tbody>
-                    <tr>
-                      <th scope="row">Average Positions</th>
-                      <td>{stats.avg_positions  }</td>
-                    </tr>
+                    
                     <tr>
                       <th scope="row">Total Jobs</th>
                       <td>{stats.total_jobs}</td>
