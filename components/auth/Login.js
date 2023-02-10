@@ -15,6 +15,8 @@ const Login = ({ google_id }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  window.google = window.google ? window.google : {}
+
   const {
     loading,
     error,
