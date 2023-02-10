@@ -14,9 +14,14 @@ export default function MyJobPage({ jobs, access_token }) {
   return (
     
     <>
+    {jobs?
     <Layout title="My Jobs">
       <MyJobs jobs={jobs} access_token={access_token} />
+    </Layout>:
+    <Layout>
+      
     </Layout>
+    }
     </>
   );
 }
