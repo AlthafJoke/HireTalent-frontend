@@ -112,10 +112,10 @@ export const AuthProvider = ({ children }) => {
       setIsAuthenticated(false);
       setIsRecruiter(false);
       setUser(null);
-      setError(
-        error.response &&
-          (error.response.data.detail || error.response.data.error)
-      );
+      // setError(
+      //   error.response &&
+      //     (error.response.data.detail || error.response.data.error)
+      // );
     }
   };
 
