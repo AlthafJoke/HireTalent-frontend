@@ -15,6 +15,8 @@ export const JobProvider = ({ children }) => {
   const [stats, setStats] = useState(false);
   const [created, setCreated] = useState(false);
   const [deleted, setDeleted] = useState(false);
+  const [approved, setApproved] = useState(false)
+  const [rejected, setRejected] = useState(false)
 
   const router = useRouter();
   
@@ -197,13 +199,14 @@ export const JobProvider = ({ children }) => {
       )
       if (res.data.success){
         setLoading(false)
-        
-        router.reload()
+        setApproved(true)
+        // router.reload()
 
         // window.location.reload()
       }
     }
     catch(error){
+      setApproved(false)
       setLoading(false)
       setError(
         error.response &&
@@ -227,14 +230,16 @@ export const JobProvider = ({ children }) => {
       
       )
       if (res.data.success){
+        setRejected(true)
         // window.location.reload()
-        router.reload()
+        // router.reload()
         setLoading(false)
         
       }
 
     }
     catch(error){
+      setRejected(false)
       setLoading(false)
       setError(
         error.response &&
@@ -272,6 +277,8 @@ export const JobProvider = ({ children }) => {
         setDeleted,
         approveCandidate,
         rejectCandidate,
+        approved,
+        rejected
         
       }}
     >

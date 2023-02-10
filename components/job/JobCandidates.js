@@ -3,11 +3,29 @@ import Link from "next/link";
 import DataTable from "react-data-table-component";
 import JobContext from "../../context/JobContext";
 import toast, { Toaster } from 'react-hot-toast';
+import { useRouter } from "next/router";
+
 
 
 
 const JobCandidates = ({ candidatesApplied , access_token}) => {
-  const {approveCandidate, rejectCandidate} = useContext(JobContext)
+  const {approveCandidate, rejectCandidate, approved, rejected} = useContext(JobContext)
+  const router = useRouter();
+
+
+
+  useEffect(() => {
+    if(approved){
+      toast.success("approved")
+      router.reload()
+      
+    }
+    if(rejected){
+      toast.error("rejected")
+      router.reload()
+    }
+
+  }, [approved, rejected])
 
 
 

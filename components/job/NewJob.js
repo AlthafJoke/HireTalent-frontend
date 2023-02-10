@@ -22,7 +22,7 @@ const NewJob = ({ access_token }) => {
   const [company, setCompany] = useState("");
 
   const { clearErrors, error, loading, newJob, created, setCreated } = useContext(JobContext);
-
+// 
 
   useEffect(() => {
     if (error) {
@@ -183,7 +183,7 @@ const NewJob = ({ access_token }) => {
                     {EducationOptions.map((item) => (
                       <option key={item} value={item}>{item}</option>
                     ))}
-                    <option>Masters</option>
+                    {/* <option>Masters</option> */}
                   </select>
                 </div>
               </div>
@@ -199,7 +199,7 @@ const NewJob = ({ access_token }) => {
                     {IndustryOptions.map((item) => (
                       <option key={item} value={item}>{item}</option>
                     ))}
-                    <option>Business</option>
+                    {/* <option>Business</option> */}
                   </select>
                 </div>
               </div>
@@ -215,7 +215,7 @@ const NewJob = ({ access_token }) => {
                     {ExperienceOptions.map((item) => (
                       <option key={item} value={item}>{item}</option>
                     ))}
-                    <option>No Experience</option>
+                    {/* <option>No Experience</option> */}
                   </select>
                 </div>
               </div>
