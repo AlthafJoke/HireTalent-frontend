@@ -254,7 +254,7 @@ const Header = () => {
                     <span>Dashboard</span>
                   </button>
                 </Link>
-                {!isPremium && (
+                {!isPremium? (
                   <div className="md:hidden sm:flex dropdown-item  bg-warning">
                     <button
                       className="text-white"
@@ -263,7 +263,7 @@ const Header = () => {
                       <span>Premium</span>
                     </button>
                   </div>
-                )}
+                ):""}
 
                 <Link href="/me" className="hover:no-underline">
                   <button className="dropdown-item hover:bg-blue-100">
