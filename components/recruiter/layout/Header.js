@@ -4,17 +4,8 @@ import style from "../../../styles/admin.module.css";
 
 const Header = () => {
   return (
-    // <div className="navWrapper2">
-    //   <div className="navContainer">
-    //     <Link href="/recruiter">
-    //       <div className="logoWrapper md:w-3/4 lg:w-1/2 xl:w-1/3">
-    //         <span className="logo1 sm:w-full ">Hire</span>
-    //         <span className="logo2 sm:w-full ">Talent.com</span>
-    //       </div>
-    //     </Link>
-    //   </div>
-    // </div>
-    <div className="header">
+  
+    <div className=" w-full bg-blue-900  shadow">
       <nav className="nav">
         <ul className="nav-items">
           <Link href="/">
@@ -43,7 +34,7 @@ const Header = () => {
         </div> */}
       </nav>
 
-      {/* <h1 className={style.name}>hello</h1> */}
+   
     </div>
   );
 };

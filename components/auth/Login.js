@@ -10,7 +10,7 @@ import Link from "next/link";
 import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
 
 const Login = ({ google_id }) => {
-  console.log("thisssss", google_id);
+  
   const [modalOpen, setModalOpen] = React.useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

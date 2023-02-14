@@ -174,12 +174,14 @@ const Header = () => {
         </div>
         <div className="btnsWrapper items-center justify-center">
           {user && !isPremium ? (
-            <button
-              className="btn btn-warning text-white flex items-center justify-center"
-              onClick={() => setpremiumModal(true)}
-            >
-              <span>Upgrade to Premium Plan</span>
-            </button>
+            <div className="premiumbtn">
+              <button
+                className=" btn btn-warning text-white flex items-center justify-center "
+                onClick={() => setpremiumModal(true)}
+              >
+                <span>Upgrade to Premium Plan</span>
+              </button>
+            </div>
           ) : (
             ""
           )}
@@ -252,7 +254,14 @@ const Header = () => {
                     <span>Dashboard</span>
                   </button>
                 </Link>
-                
+                <div className="md:hidden sm:flex dropdown-item  bg-warning">
+                  <button
+                    className="text-white"
+                    onClick={() => setpremiumModal(true)}
+                  >
+                    <span>Premium</span>
+                  </button>
+                </div>
 
                 <Link href="/me" className="hover:no-underline">
                   <button className="dropdown-item hover:bg-blue-100">

@@ -633,9 +633,11 @@ footer {
   .navContainer {
     width: 100%;
   }
+  
+  
 }
 
-@media only screen and (max-width: 920px) {
+@media only screen and (max-width: 955px) {
   .modalWrapper {
     width: 70%;
   }
@@ -648,6 +650,9 @@ footer {
   }
   .postjobDrop{
     display: block;
+  }
+  .premiumbtn{
+    display: none;
   }
 }
 @media only screen and (max-width: 720px) {
@@ -673,6 +678,11 @@ footer {
   .postbutton {
     display: none;
   }
+  .premiumbtn{
+    display: none;
+
+  }
+  
 }
 
 /* Post a new job */
