@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import Modal from "../Modal";
 import axios from "axios";
 // import { toast } from "react-toastify";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 
 function loadScript(src) {
   return new Promise((resolve) => {
@@ -23,8 +23,15 @@ function loadScript(src) {
 }
 
 const Header = () => {
-  const { loading, user, logout, isRecruiter, isApproved, currentEmail , isPremium} =
-    useContext(AuthContext);
+  const {
+    loading,
+    user,
+    logout,
+    isRecruiter,
+    isApproved,
+    currentEmail,
+    isPremium,
+  } = useContext(AuthContext);
   const [keyword, setKeyword] = useState("");
   const [location, setLocation] = useState("");
   const router = useRouter();
@@ -33,9 +40,6 @@ const Header = () => {
 
   const [productDetails, setProductDetails] = useState();
   const [selectedItemAmount, setSelectedItemAmount] = useState();
-
-  console.log(currentEmail);
-  console.log(isPremium, "hererekrejek")
 
   useEffect(() => {
     getProduct();
@@ -68,7 +72,7 @@ const Header = () => {
     }
 
     const orderData = await axios.post(
-        `${process.env.API_URL}api/createOrder/`,
+      `${process.env.API_URL}api/createOrder/`,
       {
         amount: 199 * 100,
       }
@@ -106,7 +110,7 @@ const Header = () => {
           setpremiumModal(false);
 
           toast.success(res.data.status);
-          window.location.reload()
+          window.location.reload();
         }
 
         // alert(res.data.status);
@@ -153,28 +157,32 @@ const Header = () => {
             <span className="logo2  text-lg">Talent.com</span>
           </div>
         </Link>
-        <form onSubmit={submitHandler} className="search-bar w-80 text-dark">
-          <div className="relative rounded-md shadow-sm ">
-            <input
-              id="search"
-              className="form-input search-bar-form  py-2 px-4 block w-full leading-5 rounded-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-              placeholder="Search..."
-              type="search"
-              value={keyword}
-              onChange={(e) => setKeyword(e.target.value)}
-            />
-            <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"></div>
-          </div>
-        </form>
+        <div className="searchbar">
+          <form onSubmit={submitHandler} className="search-bar w-80 text-dark">
+            <div className="relative rounded-md shadow-sm ">
+              <input
+                id="search"
+                className="form-input sm-hidden search-bar-form  py-2 px-4 block w-full leading-5 rounded-md transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                placeholder="Search..."
+                type="search"
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
+              />
+              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"></div>
+            </div>
+          </form>
+        </div>
         <div className="btnsWrapper items-center justify-center">
-          {user && !isPremium?  (
+          {user && !isPremium ? (
             <button
               className="btn btn-warning text-white flex items-center justify-center"
               onClick={() => setpremiumModal(true)}
             >
               <span>Upgrade to Premium Plan</span>
             </button>
-          ):""}
+          ) : (
+            ""
+          )}
 
           <Modal
             id="premiumModal"
@@ -216,7 +224,7 @@ const Header = () => {
 
           {isRecruiter ? (
             <Link href="/employer/jobs/new">
-              <button className="postAJobButton flex items-center justify-center">
+              <button className="postAJobButton postbutton flex items-center justify-center">
                 <span>Post A Job</span>
               </button>
             </Link>
@@ -244,6 +252,7 @@ const Header = () => {
                     <span>Dashboard</span>
                   </button>
                 </Link>
+                
 
                 <Link href="/me" className="hover:no-underline">
                   <button className="dropdown-item hover:bg-blue-100">

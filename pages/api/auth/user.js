@@ -7,10 +7,10 @@ const UserApi = async (req, res) =>  {
 
         const access = cookies.access || false // if there is not access (token) inside cookie then assign false
 
-        console.log(access, "this is access from user.js")
+        
         
         if(!access){
-            console.log("no access token")
+            
             return res.status(401).json({
                 message: 'Login first to load user'
             })
@@ -26,10 +26,10 @@ const UserApi = async (req, res) =>  {
                 }
             })
 
-            console.log("this is response", response)
+            
 
             if (response.data){
-                console.log(response.data)
+                
                 return res.status(200).json({
                     user: response.data
                 })
@@ -40,7 +40,7 @@ const UserApi = async (req, res) =>  {
 
         }
         catch(error){
-            console.log("this is catch")
+            
             
            
 
