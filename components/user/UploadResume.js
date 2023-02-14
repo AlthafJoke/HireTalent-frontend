@@ -33,7 +33,7 @@ const UploadResume = ({ access_token }) => {
         setUploaded(false)
       toast.success("Your resume is uploaded successfully")
     }
-  });
+  },[uploaded, error]);
 
   const submitHandler = (e) => {
     e.preventDefault();
