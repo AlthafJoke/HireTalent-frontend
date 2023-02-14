@@ -32,14 +32,15 @@ const JobDetails = ({ job, candidates, access_token }) => {
     // }
 
     checkJobApplied(job.id, access_token);
-  }, []);
+  }, [error]);
 
   const applyToJobHandler = () => {
     if (error) {
       toast.error(error);
     
-      clearErrors();
     }
+    clearErrors();
+
     
     
     applyToJob(job.id, access_token);

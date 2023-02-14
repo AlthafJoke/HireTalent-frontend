@@ -60,9 +60,9 @@ const UpdateJob = ({ job, access_token }) => {
       setSalary("");
       setPositions("");
       setCompany("");
+      
     }
-    toast.success("successfully updated")
-  }, [job, error, updated, clearErrors, setUpdated, router]);
+  }, [job, error, clearErrors, setUpdated, router]);
 
   const submitHandler = (e) => {
     e.preventDefault();

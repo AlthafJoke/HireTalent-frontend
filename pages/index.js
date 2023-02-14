@@ -1,13 +1,18 @@
 import Home from "../components/Home";
 import Layout from "../components/layout/Layout";
 import axios from "axios";
+import Loader from "../components/layout/Loader";
 
 export default function Index({ data }) {
   return (
     <>
-      <Layout>
-        <Home data={data} />
-      </Layout>
+      {data ? (
+        <Layout>
+          <Home data={data} />
+        </Layout>
+      ) : (
+        <Loader/>
+      )}
     </>
   );
 }
@@ -20,15 +25,14 @@ export async function getServerSideProps({ query }) {
   const location = query.location || "";
   const page = query.page || 1;
 
-  let min_salary = ""
-  let max_salary = ""
+  let min_salary = "";
+  let max_salary = "";
 
-  if (query.salary){
-    const [min, max]  = query.salary.split('-');
-    min_salary = min
-    max_salary = max
+  if (query.salary) {
+    const [min, max] = query.salary.split("-");
+    min_salary = min;
+    max_salary = max;
   }
-  
 
   const queryStr = `keyword=${keyword}&location=${location}&page=${page}&jobType=${jobType}&education=${education}&experience=${experience}&min_salary=${min_salary}&max_salary=${max_salary}`;
 
