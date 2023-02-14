@@ -28,17 +28,19 @@ const JobDetails = ({ job, candidates, access_token }) => {
     // if (error) {
     //   toast.error(error);
     //   // router.push('/upload/resume')
-    //   clearErrors();
+    //   clearErrors();]
+
+    if (error) {
+      toast.error(error);
+    
+    }
     // }
 
     checkJobApplied(job.id, access_token);
   }, [error]);
 
   const applyToJobHandler = () => {
-    if (error) {
-      toast.error(error);
     
-    }
     clearErrors();
 
     
