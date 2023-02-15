@@ -33,7 +33,6 @@ export async function getServerSideProps({ query }) {
     min_salary = min;
     max_salary = max;
   }
-
   const queryStr = `keyword=${keyword}&location=${location}&page=${page}&jobType=${jobType}&education=${education}&experience=${experience}&min_salary=${min_salary}&max_salary=${max_salary}`;
 
   const response = await axios.get(
