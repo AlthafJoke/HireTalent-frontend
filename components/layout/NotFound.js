@@ -33,7 +33,7 @@ const NotFound = () => {
         <span>4</span>
       </div>
       <h5 className="text-xl text-white">
-        Page Not Found. Go to <Link href="/"> <span className="ml-3 btn btn-primary shadow" >Homepage</span></Link>{" "}
+        Page Not Found. Go to <Link href="/"> <span className="ml-3 px-3 py-2 rounded bg-blue-900 text-white shadow" >Homepage</span></Link>{" "}
       </h5>
 
     </div>
