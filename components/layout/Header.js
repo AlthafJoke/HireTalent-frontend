@@ -157,7 +157,7 @@ const Header = () => {
             <span className="logo2  text-lg">Talent.com</span>
           </div>
         </Link>
-        <div className="searchbar">
+        <div className="searchbar md:flex sm:hidden">
           <form onSubmit={submitHandler} className="search-bar w-80 text-dark">
             <div className="relative rounded-md shadow-sm ">
               <input
@@ -174,7 +174,7 @@ const Header = () => {
         </div>
         <div className="btnsWrapper items-center justify-center">
           {user && !isPremium ? (
-            <div className="premiumbtn">
+            <div className="premiumbtn md:flex sm:hidden">
               <button
                 className=" btn btn-warning text-white flex items-center justify-center "
                 onClick={() => setpremiumModal(true)}
@@ -254,8 +254,8 @@ const Header = () => {
                     <span>Dashboard</span>
                   </button>
                 </Link>
-                {!isPremium? (
-                  <div className="md:hidden sm:flex dropdown-item  bg-warning">
+                {!isPremium ? (
+                  <div className=" dropdown-item  bg-warning">
                     <button
                       className="text-white"
                       onClick={() => setpremiumModal(true)}
@@ -263,7 +263,9 @@ const Header = () => {
                       <span>Premium</span>
                     </button>
                   </div>
-                ):""}
+                ) : (
+                  ""
+                )}
 
                 <Link href="/me" className="hover:no-underline">
                   <button className="dropdown-item hover:bg-blue-100">
@@ -296,6 +298,18 @@ const Header = () => {
                   className="dropdown-menu "
                   aria-labelledby="dropDownMenuButton"
                 >
+                  {!isPremium ? (
+                    <div className="md:hidden sm:flex dropdown-item  bg-warning">
+                      <button
+                        className="text-white"
+                        onClick={() => setpremiumModal(true)}
+                      >
+                        <span>Premium</span>
+                      </button>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                   <Link href="/me/applied" className="hover:no-underline">
                     <button className="dropdown-item hover:bg-blue-100">
                       <span>Jobs Applied</span>

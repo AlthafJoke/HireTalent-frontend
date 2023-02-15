@@ -9,7 +9,7 @@ const Home = ({data}) => {
   const {jobs, count, resPerPage} = data
   const router = useRouter();
 
-  let {page = 1, keyword} = router.query;
+  let {page = 1, keyword, location} = router.query;
 
   page = Number(page)
 
@@ -45,7 +45,7 @@ const Home = ({data}) => {
         </div>
         <div className="col-xl-9 col-lg-8 content-left-offset text-white">
           <div className="my-5">
-            <h4 className="page-title text-xl"> {keyword? `${jobs.length} Results for ${keyword}`: "Latest Jobs" } </h4>
+            <h4 className="page-title text-xl"> {keyword? `${jobs.length} Results for ${keyword} ` : "Latest Jobs" } {location &&  `,${location}`} </h4>
             <Link  href="/stats">
               <button className="bg-transparent py-2 px-4 border   rounded float-right stats_btn ">
                 Get Topic stats
