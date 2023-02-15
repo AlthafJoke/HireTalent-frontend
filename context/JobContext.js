@@ -73,10 +73,10 @@ export const JobProvider = ({ children }) => {
       setApplied(res.data);
     } catch (error) {
       setLoading(false);
-      setError(
-        error.response &&
-          (error.response.data.detail || error.response.data.error)
-      );
+      // setError(
+      //   error.response &&
+      //     (error.response.data.detail || error.response.data.error)
+      // );
     }
   };
 
