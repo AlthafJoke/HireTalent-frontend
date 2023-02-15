@@ -255,7 +255,7 @@ const Header = () => {
                   </button>
                 </Link>
                 {!isPremium ? (
-                  <div className=" dropdown-item  bg-warning">
+                  <div className="md:hidden sm:flex dropdown-item  bg-warning">
                     <button
                       className="text-white"
                       onClick={() => setpremiumModal(true)}
