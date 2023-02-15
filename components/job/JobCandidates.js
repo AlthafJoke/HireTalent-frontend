@@ -2,49 +2,25 @@ import React, { useContext, useEffect } from "react";
 import Link from "next/link";
 import DataTable from "react-data-table-component";
 import JobContext from "../../context/JobContext";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/router";
+import Loader from "../layout/Loader";
 
-
-
-
-const JobCandidates = ({ candidatesApplied , access_token}) => {
-  const {approveCandidate, rejectCandidate, approved, rejected} = useContext(JobContext)
+const JobCandidates = ({ candidatesApplied, access_token }) => {
+  const { approveCandidate, rejectCandidate, approved, rejected, load } =
+    useContext(JobContext);
   const router = useRouter();
 
-
-
   useEffect(() => {
-    if(approved){
-      toast.success("approved")
-      router.reload()
-      
+    if (approved) {
+      toast.success("approved");
+      router.reload();
     }
-    if(rejected){
-      toast.error("rejected")
-      router.reload()
+    if (rejected) {
+      toast.error("rejected");
+      router.reload();
     }
-
-  }, [approved, rejected])
-
-
-
-  
-  
-//   const tableCustomStyles = {
-//     headCells: {
-//       style: {
-//         fontSize: "15px",
-//         fontWeight: "semi-bold",
-//         paddingLeft: "0 8px",
-
-//         justifyContent: "center",
-//         backgroundColor: "#d9e7ff",
-//       },
-//     },
-//   };
-
-
+  }, [approved, rejected]);
 
   const columns = [
     {
@@ -71,27 +47,23 @@ const JobCandidates = ({ candidatesApplied , access_token}) => {
     {
       name: "Status",
       sortable: false,
-      selector: (row) => row.status
-      
+      selector: (row) => row.status,
     },
     {
       name: "Actions",
       sortable: false,
       selector: (row) => row.actions,
-      
-
-
-    }
+    },
   ];
 
   const data = []; //
   candidatesApplied &&
     candidatesApplied.forEach((item) => {
-      const stat = item.status
-      
+      const stat = item.status;
+
       // here data.push is inserting data into data array
       data.push({
-        id: item.job.id,
+        id: item.id,
 
         title: item.job.title,
         salary: item.job.salary,
@@ -115,39 +87,58 @@ const JobCandidates = ({ candidatesApplied , access_token}) => {
             </Link>
           </>
         ),
-        appliedAt : item.appliedAt.substring(0, 10),
-        status : (<>{item.status}</>),
-          
+        appliedAt: item.appliedAt.substring(0, 10),
+        status: <div>{item.status}</div>,
+
         actions: (
-          <>
-          <span className="">
-          <button className="bg-green-600 rounded px-2 py-1 text-white" onClick={() => approveCandidate(item.id, access_token)}>approve</button>
-          </span>
-          <span className="ml-2">
-          <button className="bg-red-500 rounded px-2 py-1 text-white" onClick={() => rejectCandidate(item.id, access_token)}>reject</button>
-          </span>
-          </>
-        )
+          <div className="">
+            <span className="">
+              <button
+                className="bg-green-600 rounded px-2 py-1 text-white"
+                onClick={() => approveCandidate(item.id, access_token)}
+              >
+                approve
+              </button>
+            </span>
+            <span className="ml-2">
+              <button
+                className="bg-red-500 rounded px-2 py-1 text-white"
+                onClick={() => rejectCandidate(item.id, access_token)}
+              >
+                reject
+              </button>
+            </span>
+          </div>
+        ),
       });
     });
 
   return (
     <div className="row">
-      <Toaster />
-      <div className="col-2"></div>
-      <div className="col-8 mt-5 text-center ">
-        <h1 className=" text-xl font-semi-bold bg-white p-3">{candidatesApplied && `${candidatesApplied.length} Candidates applied for this job`}</h1>
-        {/* data is commming from data.push */}
+      {load ? (
+        <Loader />
+      ) : (
         <>
-          <DataTable
-            // customStyles={tableCustomStyles}
-            columns={columns}
-            data={data}
-            responsive
-          ></DataTable>
+          <Toaster />
+          <div className="col-2"></div>
+          <div className="col-8 mt-5 text-center ">
+            <h1 className=" text-xl font-semi-bold bg-white p-3">
+              {candidatesApplied &&
+                `${candidatesApplied.length} Candidates applied for this job`}
+            </h1>
+            {/* data is commming from data.push */}
+            <>
+              <DataTable
+                // customStyles={tableCustomStyles}
+                columns={columns}
+                data={data}
+                responsive
+              ></DataTable>
+            </>
+          </div>
+          <div className="col-2"></div>
         </>
-      </div>
-      <div className="col-2"></div>
+      )}
     </div>
   );
 };

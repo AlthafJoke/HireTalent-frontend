@@ -3,6 +3,7 @@ import Layout from "../../../../components/recruiter/layout/Layout";
 import axios from "axios";
 import JobCandidates from "../../../../components/job/JobCandidates";
 import { isAuthenticatedUser } from "../../../../utils/isAuthenticated";
+import jwtDecode from "jwt-decode";
 
 export default function JobCandidatesPage({ candidatesApplied, access_token }) {
   return (
@@ -19,16 +20,26 @@ export async function getServerSideProps({ req, params }) {
 
   const user = await isAuthenticatedUser(access_token);
 
-  
-
-  if (!user) {
+  if (access_token) {
+    const decodeduser = jwtDecode(access_token);
+    if (!decodeduser.is_recruiter) {
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false,
+        },
+      };
+    }
+  } else {
     return {
       redirect: {
-        destination: "/login",
+        destination: "/",
         permanent: false,
       },
     };
   }
+
+  
   try {
     const res = await axios.get(`${process.env.API_URL}api/job/${params.id}/candidates/`, {
       headers: {

@@ -18,9 +18,19 @@ export async function getServerSideProps({ req, params }) {
   const access_token = req.cookies.access;
 
   const user = await isAuthenticatedUser(access_token);
-  const decodeduser = jwtDecode(access_token);
+ 
 
-  if (!user) {
+  if (access_token) {
+    const decodeduser = jwtDecode(access_token);
+    if (!decodeduser.is_recruiter ) {
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false,
+        },
+      };
+    }
+  } else {
     return {
       redirect: {
         destination: "/",

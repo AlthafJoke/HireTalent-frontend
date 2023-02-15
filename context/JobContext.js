@@ -17,6 +17,7 @@ export const JobProvider = ({ children }) => {
   const [deleted, setDeleted] = useState(false);
   const [approved, setApproved] = useState(false)
   const [rejected, setRejected] = useState(false)
+  const [load, setLoad] = useState(false)
 
   const router = useRouter();
   
@@ -186,6 +187,7 @@ export const JobProvider = ({ children }) => {
   const approveCandidate = async (id, access_token) => {
     try{
       setLoading(true)
+      setLoad(true)
 
       const res = await axios.post(`${process.env.API_URL}api/candidate/${id}/approve/`,
       {},
@@ -195,8 +197,10 @@ export const JobProvider = ({ children }) => {
           Authorization: `Bearer ${access_token}`,
         },
       }
-      
+
       )
+      setLoad(false)
+
       if (res.data.success){
         setLoading(false)
         setApproved(true)
@@ -206,6 +210,7 @@ export const JobProvider = ({ children }) => {
       }
     }
     catch(error){
+      setLoad(false)
       setApproved(false)
       setLoading(false)
       setError(
@@ -218,6 +223,7 @@ export const JobProvider = ({ children }) => {
 
   const rejectCandidate = async (id, access_token) => {
     try{
+      setLoad(true)
       setLoading(true)
 
       const res = await axios.post(`${process.env.API_URL}api/candidate/${id}/reject/`,
@@ -229,6 +235,8 @@ export const JobProvider = ({ children }) => {
       }
       
       )
+
+      setLoad(false)
       if (res.data.success){
         setRejected(true)
         // window.location.reload()
@@ -239,6 +247,7 @@ export const JobProvider = ({ children }) => {
 
     }
     catch(error){
+      setLoad(false)
       setRejected(false)
       setLoading(false)
       setError(
@@ -278,7 +287,8 @@ export const JobProvider = ({ children }) => {
         approveCandidate,
         rejectCandidate,
         approved,
-        rejected
+        rejected, 
+        load,
         
       }}
     >
