@@ -12,8 +12,6 @@ const JobCandidates = ({ candidatesApplied, access_token }) => {
   const router = useRouter();
 
   useEffect(() => {
-
-    
     if (approved) {
       toast.success("approved");
       router.reload();

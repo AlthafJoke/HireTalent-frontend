@@ -16,9 +16,7 @@ const ResetPasswordRequest = () => {
       clearErrors();
     }
 
-    
-
-  }, [error]);
+  });
   
 
   const handleSubmit = (e) => {
