@@ -8,7 +8,7 @@ const LogoutApi = async (req, res) => {
         secure: process.env.NODE_ENV !== "development",
         maxAge: new Date(0),
         sameSite: "lax",
-        path: "/login",
+        path: "/",
       }),
     ]);
 
