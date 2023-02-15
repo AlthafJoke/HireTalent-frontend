@@ -272,6 +272,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const resetPasswordRequest = async (email) => {
+
     setLoading(true);
 
     try {
